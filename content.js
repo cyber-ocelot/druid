@@ -69,13 +69,13 @@ function init() {
       } else if (event.key.length === 1) {
         prompt += event.key;
       } else if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'v')  {
-        flagPrompt(paste);
+        flagPrompt("paste");
       }
     });
   }
 
   function flagPrompt (event) {
-    if (event === paste) {
+    if (event === "paste") {
       // show a warning on the page
       const banner = document.createElement("div");
       banner.textContent = "⚠️ Potential academic dishonesty detected. ~druid";
