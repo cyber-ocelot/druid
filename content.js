@@ -68,11 +68,8 @@ function init() {
         prompt = prompt.slice(0, -1);
       } else if (event.key.length === 1) {
         prompt += event.key;
-      } else if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'v')  {
-        console.log("copy/paste detected");
-        prompt += "copy/paste";
-        handlePrompt(prompt);
-        flagPrompt("paste");
+      } else if (event.ctrlKey || event.metaKey)  {
+        prompt += "ctrl/cmd";
       }
     });
   }

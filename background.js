@@ -54,6 +54,7 @@ function analyzePrompt(prompt, AIstatus) {
     "do this for me",
     "complete this for me",
     "finish this for me",
+    "ctrl/cmd v"
   ];
 
   const flagged = cheatPhrases.some(p => 
