@@ -47,6 +47,7 @@ function analyzePrompt(prompt, AIstatus) {
     "do my homework",
     "write my essay",
     "answer this question",
+    "answer this",
     "what's the answer",
     "tell me the answer",
     "just give me",
