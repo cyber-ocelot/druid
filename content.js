@@ -5,10 +5,10 @@
 // ══════════════════════════════════════════════════════
 
 // ── 1. GUARD: run once per page ───────────────────────
-//if (!window.__myExtensionLoaded) {
+if (!window.__myExtensionLoaded) {
   window.__myExtensionLoaded = true;
   init();
-//}
+}
 
 function init() {
   console.log("[Extension] Content script running on:", window.location.hostname);
