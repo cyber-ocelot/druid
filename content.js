@@ -61,7 +61,7 @@ function init() {
 
     document.addEventListener("keydown", (event) => {
       if (event.key === "Enter") {
-        console.log("prompt sent:", prompt);
+        console.log("[Extension] Prompt sent:", prompt);
         handlePrompt(prompt);
         prompt = "";
       } else if (event.key === "Backspace") {
@@ -70,6 +70,7 @@ function init() {
         prompt += event.key;
       } else if (event.ctrlKey || event.metaKey)  {
         prompt += "ctrl/cmd";
+        console.log("[Extension] Ctrl/cmd detected");
       }
     });
   }

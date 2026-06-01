@@ -68,7 +68,7 @@ function analyzePrompt(prompt, AIstatus) {
     // Send banner to content.js
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
       chrome.tabs.sendMessage(tabs[0].id, { type: "PROMPT_FLAGGED" })
-        .catch(() => console.log("Could not reach content script."));
+        .catch(() => console.log("[Extension] Could not reach content script."));
     });
 
     // Increment tally in storage
