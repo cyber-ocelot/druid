@@ -48,7 +48,7 @@ function init() {
       
       // show a warning on the page
       const banner = document.createElement("div");
-      banner.textContent = "⚠️ Potential academic dishonesty detected. ~druid";
+      banner.textContent = warningText;
       banner.style.cssText = `
         position: fixed; top: 0; left: 0; right: 0;
         background: #e53e3e; color: white;
@@ -140,7 +140,7 @@ function init() {
   }
 
   function handlePrompt(prompt) {
-    console.log("handlePrompt running");
+    console.log("[Extension] handlePrompt running");
     chrome.runtime.sendMessage({
       type: "PROMPT_SENT",
       prompt: prompt,
