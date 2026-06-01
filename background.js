@@ -46,6 +46,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
     // increment tally in storage
     chrome.storage.local.get(["flagCount"], (result) => {
+      console.log("[Background] Adding to flagCount.");
       const newCount = (result.flagCount || 0) + 1;
       chrome.storage.local.set({ flagCount: newCount });
     });
@@ -76,18 +77,19 @@ function analyzePrompt(prompt, AIstatus) {
     prompt.toLowerCase().includes(p)
   );
 
-  console.log("[Extension] Prompt analyzed:", prompt);
-  console.log("[Extension] Flagged:", flagged);
+  console.log("[Background] Prompt analyzed:", prompt);
+  console.log("[Background] Flagged:", flagged);
 
   if (flagged) {
     // send banner to content.js
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
       chrome.tabs.sendMessage(tabs[0].id, { type: "PROMPT_FLAGGED", data: "text" })
-        .catch(() => console.log("[Extension] Could not reach content script."));
+        .catch(() => console.log("[Background] Could not reach content script."));
     });
 
     // increment tally in storage
     chrome.storage.local.get(["flagCount"], (result) => {
+      console.log("[Background] Adding to flagCount.");
       const newCount = (result.flagCount || 0) + 1;
       chrome.storage.local.set({ flagCount: newCount });
     });
