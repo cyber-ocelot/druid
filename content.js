@@ -55,10 +55,11 @@ function init() {
     return true;
   });
 
-  // ── 3. KEYBOARD STROKES ──────────────────────────────
+  // ── 3. PROMPT DETECTION ──────────────────────────────
   if (AIstatus) {
     let prompt = ""
 
+    // regular keyboard strokes
     document.addEventListener("keydown", (event) => {
       if (event.key === "Enter") {
         console.log("[Extension] Prompt sent:", prompt);
@@ -73,6 +74,33 @@ function init() {
         console.log("[Extension] Ctrl/cmd detected");
       }
     });
+
+    document.addEventListener("paste", (event) => {
+      const pastedText = event.clipboardData.getData("text");
+      if (pastedText) {
+        console.log("[Extension] Pasted:", pastedText);
+        flagPrompt("paste");
+        handlePrompt(pastedText);
+      }
+    });
+
+    document.addEventListener("change", (event) => {
+      const target = event.target;
+      if (target.type === "file" && target.files.length > 0) {
+        const file = target.files[0];
+        if (file.type.startsWith("image/")) {
+          console.log("[Extension] Image uploaded:", file.name);
+          flagPrompt("upload");
+          chrome.runtime.sendMessage({
+            type: "IMAGE_UPLOADED",
+            filename: file.name,
+            AIstatus: AIstatus,
+            url: window.location.href
+          });
+        }
+      }
+    });
+
   }
 
   function flagPrompt (event) {

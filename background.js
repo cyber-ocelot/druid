@@ -35,6 +35,22 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     analyzePrompt(message.prompt, message.AIstatus);
   }
 
+  if (message.type === "IMAGE_UPLOADED") {
+    console.log("[Background] Image uploaded:", message.filename);
+
+    // Send same banner as "PROMPT_FLAGGED"
+    chrome.tabs.query ({ active: true, currentWindow: true }, (tabs) => {
+      chrome.tabs.sendMessage(tabs[0].id, { type: "PROMPT_FLAGGED" })
+        .catch(() => console.log("[Background] Could not reach content script."));
+    });
+
+    // Increment tally in storage
+    chrome.storage.local.get(["flagCount"], (result) => {
+      const newCount = (result.flagCount || 0) + 1;
+      chrome.storage.local.set({ flagCount: newCount });
+    });
+  };
+
   return true; // Keep message channel open for async responses
 });
 
@@ -54,7 +70,6 @@ function analyzePrompt(prompt, AIstatus) {
     "do this for me",
     "complete this for me",
     "finish this for me",
-    "ctrl/cmd v"
   ];
 
   const flagged = cheatPhrases.some(p => 
