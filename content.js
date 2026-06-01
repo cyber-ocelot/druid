@@ -116,6 +116,18 @@ function init() {
       `;
       document.body.appendChild(banner);
       setTimeout(() => banner.remove(), 5000); // disappears after 5 seconds   
+    } else if (event === "upload") {
+      // show a warning on the page
+      const banner = document.createElement("div");
+      banner.textContent = "⚠️ Potential academic dishonesty detected. ~druid";
+      banner.style.cssText = `
+        position: fixed; top: 0; left: 0; right: 0;
+        background: #e53e3e; color: white;
+        padding: 12px; text-align: center;
+        font-size: 16px; z-index: 999999;
+      `;
+      document.body.appendChild(banner);
+      setTimeout(() => banner.remove(), 5000); // disappears after 5 seconds   
     }
   }
 
