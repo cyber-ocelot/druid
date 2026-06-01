@@ -40,12 +40,12 @@ function init() {
     // flagged prompt
     if (message.type === "PROMPT_FLAGGED") {
       let warningText = ""
-      
+
       // set warning text based on type of data
       if (message.data === "text") {
-        let warningText = "⚠️ Potential academic dishonesty detected. ~druid"
+        warningText = "⚠️ Potential academic dishonesty detected. ~druid"
       } else if (message.data === "text") {
-        let warningText = "⚠️ Image upload detected. ~druid"
+        warningText = "⚠️ Image upload detected. ~druid"
       }
       
       // show a warning on the page

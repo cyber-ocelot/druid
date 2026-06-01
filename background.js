@@ -57,6 +57,8 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
 // ── Analyze AI Prompt ──────────────────────────────────
 function analyzePrompt(prompt, AIstatus) {
+  console.log("[Background] analyzePrompt called with:", prompt);
+  
   const cheatPhrases = [
     "give me the answer",
     "what is the answer",
