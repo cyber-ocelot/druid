@@ -39,6 +39,13 @@ function init() {
 
     // flagged prompt
     if (message.type === "PROMPT_FLAGGED") {
+      // set warning text based on type of data
+      if (message.data === "text") {
+        let warningText = "⚠️ Potential academic dishonesty detected. ~druid"
+      } else if (message.data === "text") {
+        let warningText = "⚠️ Image upload detected. ~druid"
+      }
+      
       // show a warning on the page
       const banner = document.createElement("div");
       banner.textContent = "⚠️ Potential academic dishonesty detected. ~druid";
@@ -105,7 +112,7 @@ function init() {
 
   function flagPrompt (event) {
     if (event === "paste") {
-      // show a warning on the page
+      // show a warning on the page if copy/paste
       const banner = document.createElement("div");
       banner.textContent = "⚠️ Copy/pasting detected. ~druid";
       banner.style.cssText = `
@@ -117,7 +124,8 @@ function init() {
       document.body.appendChild(banner);
       setTimeout(() => banner.remove(), 5000); // disappears after 5 seconds   
     } else if (event === "upload") {
-      // show a warning on the page
+      // show a warning on the page if image upload
+      console.log("[Extension] flagPrompt running.");
       const banner = document.createElement("div");
       banner.textContent = "⚠️ Image upload detected. ~druid";
       banner.style.cssText = `

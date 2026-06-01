@@ -7,7 +7,7 @@
 chrome.runtime.onInstalled.addListener((details) => {
   if (details.reason === "install") {
     console.log("[Extension] Installed for the first time.");
-    // Set any default storage values here:
+    // set any default storage values here:
     chrome.storage.sync.set({ exampleSetting: true });
     // API key storage
     //chrome.storage.local.set({geminiKey: "AIzaSyAIs5RV9NeBV7MBzQMcRyqCWxAHKbq0KxQ"})
@@ -18,16 +18,16 @@ chrome.runtime.onInstalled.addListener((details) => {
 });
 
 // ── Message Listener ──────────────────────────────────
-// Listen for messages from popup.js or content.js
+// listen for messages from popup.js or content.js
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   console.log("[Background] Message received:", message);
 
-  // Example: handle a "ping" message
+  // example: handle a "ping" message
   if (message.type === "ping") {
     sendResponse({ type: "pong", time: Date.now() });
   }
 
-  // Prompt handler
+  // prompt handler
   if (message.type === "PROMPT_SENT") {
     console.log("[Background] received:", message.prompt);
     console.log("[Background] on AI site:", message.AIstatus);
@@ -38,20 +38,20 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.type === "IMAGE_UPLOADED") {
     console.log("[Background] Image uploaded:", message.filename);
 
-    // Send same banner as "PROMPT_FLAGGED"
+    // send same banner as "PROMPT_FLAGGED"
     chrome.tabs.query ({ active: true, currentWindow: true }, (tabs) => {
-      chrome.tabs.sendMessage(tabs[0].id, { type: "PROMPT_FLAGGED" })
+      chrome.tabs.sendMessage(tabs[0].id, { type: "PROMPT_FLAGGED", data: "image" })
         .catch(() => console.log("[Background] Could not reach content script."));
     });
 
-    // Increment tally in storage
+    // increment tally in storage
     chrome.storage.local.get(["flagCount"], (result) => {
       const newCount = (result.flagCount || 0) + 1;
       chrome.storage.local.set({ flagCount: newCount });
     });
   };
 
-  return true; // Keep message channel open for async responses
+  return true; // keep message channel open for async responses
 });
 
 // ── Analyze AI Prompt ──────────────────────────────────
@@ -80,13 +80,13 @@ function analyzePrompt(prompt, AIstatus) {
   console.log("[Extension] Flagged:", flagged);
 
   if (flagged) {
-    // Send banner to content.js
+    // send banner to content.js
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-      chrome.tabs.sendMessage(tabs[0].id, { type: "PROMPT_FLAGGED" })
+      chrome.tabs.sendMessage(tabs[0].id, { type: "PROMPT_FLAGGED", data: "text" })
         .catch(() => console.log("[Extension] Could not reach content script."));
     });
 
-    // Increment tally in storage
+    // increment tally in storage
     chrome.storage.local.get(["flagCount"], (result) => {
       const newCount = (result.flagCount || 0) + 1;
       chrome.storage.local.set({ flagCount: newCount });

@@ -68,13 +68,13 @@ function loadCurrentTab() {
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {});
 
 // ── 7. PRIMARY ACTION ─────────────────────────────────
-// Replace this with whatever your extension actually does!
+// replace this with whatever your extension actually does!
 btnAction.addEventListener("click", () => {
   showOutput("✅ Action complete! Replace this handler in popup.js with your own logic.");
 });
 
 // ── 8. SETTINGS BUTTON ────────────────────────────────
-// Opens a dedicated options page (you can add options.html later)
+// opens a dedicated options page (you can add options.html later)
 btnSettings.addEventListener("click", () => {
   if (chrome.runtime.openOptionsPage) {
     chrome.runtime.openOptionsPage();
