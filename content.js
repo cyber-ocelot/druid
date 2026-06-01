@@ -107,7 +107,7 @@ function init() {
     if (event === "paste") {
       // show a warning on the page
       const banner = document.createElement("div");
-      banner.textContent = "⚠️ Potential academic dishonesty detected. ~druid";
+      banner.textContent = "⚠️ Copy/pasting detected. ~druid";
       banner.style.cssText = `
         position: fixed; top: 0; left: 0; right: 0;
         background: #e53e3e; color: white;
@@ -119,7 +119,7 @@ function init() {
     } else if (event === "upload") {
       // show a warning on the page
       const banner = document.createElement("div");
-      banner.textContent = "⚠️ Potential academic dishonesty detected. ~druid";
+      banner.textContent = "⚠️ Image upload detected. ~druid";
       banner.style.cssText = `
         position: fixed; top: 0; left: 0; right: 0;
         background: #e53e3e; color: white;
