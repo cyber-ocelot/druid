@@ -1,9 +1,8 @@
 // ══════════════════════════════════════════════════════
-//  popup.js  —  Edit this file to add your own logic
+//  popup.js
 // ══════════════════════════════════════════════════════
 
 // ── 1. TIPS  ─────────────────────────────────────────
-// Add your own tip strings to this array!
 const TIPS = [
   "You can edit popup.js to add your own tips and features.",
   "Use chrome.storage.sync to save settings across devices.",
