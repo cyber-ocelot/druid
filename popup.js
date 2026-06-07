@@ -75,11 +75,12 @@ btnAction.addEventListener("click", () => {
 // ── 8. SETTINGS BUTTON ────────────────────────────────
 // opens a dedicated options page (you can add options.html later)
 btnSettings.addEventListener("click", () => {
-  if (chrome.runtime.openOptionsPage) {
+  showOutput("No settings page yet — create options.html to add one.");
+  /*if (chrome.runtime.openOptionsPage) {
     chrome.runtime.openOptionsPage();
   } else {
     showOutput("No settings page yet — create options.html to add one.");
-  }
+  }*/
 });
 
 // ── 9. FOOTER LINK ────────────────────────────────────
