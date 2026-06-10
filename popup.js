@@ -70,6 +70,11 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {});
 // replace this with whatever your extension actually does!
 btnAction.addEventListener("click", () => {
   showOutput("✅ Action complete! Replace this handler in popup.js with your own logic.");
+  
+  // Generate the correct internal URL for your file
+  const pageUrl = chrome.runtime.getURL("index.html");
+  // Open it in a new browser tab
+  chrome.tabs.create({ url: pageUrl });
 });
 
 // ── 8. SETTINGS BUTTON ────────────────────────────────
