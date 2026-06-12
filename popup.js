@@ -14,7 +14,7 @@ const TIPS = [
 const urlEl      = document.getElementById("current-url");
 const flagsEl    = document.getElementById("flagsEl");
 const btnAction  = document.getElementById("btn-action");
-const btnSettings = document.getElementById("btn-settings");
+const btnLogin = document.getElementById("btn-login");
 const output     = document.getElementById("output");
 const outputText = document.getElementById("output-text");
 const footerLink = document.getElementById("footer-link");
@@ -79,13 +79,10 @@ btnAction.addEventListener("click", () => {
 
 // ── 8. SETTINGS BUTTON ────────────────────────────────
 // opens a dedicated options page (you can add options.html later)
-btnSettings.addEventListener("click", () => {
-  showOutput("No settings page yet — create options.html to add one.");
-  /*if (chrome.runtime.openOptionsPage) {
-    chrome.runtime.openOptionsPage();
-  } else {
-    showOutput("No settings page yet — create options.html to add one.");
-  }*/
+btnLogin.addEventListener("click", () => {
+  chrome.runtime.sendMessage ({
+    type: "LOGIN"
+  });
 });
 
 // ── 9. FOOTER LINK ────────────────────────────────────

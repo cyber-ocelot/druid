@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "My Extension",
+  "name": "Druid",
   "version": "1.0",
-  "description": "A friendly, educational Chrome extension.",
+  "description": "WIP.",
   "action": {
     "default_popup": "popup.html",
     "default_title": "Druid"
@@ -11,12 +11,14 @@
     "activeTab",
     "storage",
     "tabs",
-    "scripting"
+    "scripting",
+    "identity"
   ],
   "host_permissions": [
     "<all_urls>",
     "https://huggingface.co/*",
-    "https://generativelanguage.googleapis.com/*"
+    "https://generativelanguage.googleapis.com/*",
+    "https://accounts.google.com/*"
   ],
   "background": {
     "service_worker": "background.js"
