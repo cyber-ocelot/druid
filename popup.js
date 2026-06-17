@@ -77,8 +77,8 @@ btnAction.addEventListener("click", () => {
   chrome.tabs.create({ url: pageUrl });
 });
 
-// ── 8. SETTINGS BUTTON ────────────────────────────────
-// opens a dedicated options page (you can add options.html later)
+// ── 8. LOGIN BUTTON ────────────────────────────────
+// sends login message to background.js
 btnLogin.addEventListener("click", () => {
   chrome.runtime.sendMessage ({
     type: "LOGIN"
