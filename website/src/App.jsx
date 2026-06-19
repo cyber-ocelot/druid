@@ -1,8 +1,34 @@
 import './App.css'
 import './index.css'
+
+import { useEffect, useState } from 'react'
+import { onAuthStateChanged } from 'firebase/auth'
+import { auth } from './firebase'
+
 import Login from './Login'
+import Dashboard from './Dashboard'
 
 function App() {
+  const [ user, setUser ] = useState(null);
+  const [ loading, setLoading ] = useState(true);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      setLoading(false);
+    });
+
+    if (loading) {
+      return <h1>Loading Druid...</h1>
+    }
+
+    if (user) {
+      return <Dashboard user={user} />
+    }
+
+    return() => unsubscribe();
+  }, []);
+
   return (
     <>
       {/* Orbs */}
