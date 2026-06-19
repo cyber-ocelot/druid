@@ -24,7 +24,7 @@ function Login() {
        });
       }
 
-      alert('Welcome ${user.displayName}!');
+      alert(`Welcome ${user.displayName}!`);
     } catch (error) {
         console.error(error);
     }
