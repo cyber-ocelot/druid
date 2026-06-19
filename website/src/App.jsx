@@ -1,5 +1,6 @@
 import './App.css'
 import './index.css'
+import Login from './Login'
 
 function App() {
   return (
@@ -35,7 +36,8 @@ function App() {
             Druid watches over AI interactions in real time — quietly flagging academic dishonesty so educators and students can build trust, not just grades.
           </p>
           <div className="hero-actions">
-            <a href="auth.html" className="btn-primary"><span>Get started free</span></a>
+            {/*<a href="auth.html" className="btn-primary"><span>Get started free</span></a>*/}
+            <Login />
             <a href="#how-it-works" className="btn-ghost">See how it works</a>
           </div>
         </section>
