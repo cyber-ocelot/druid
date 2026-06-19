@@ -1,5 +1,6 @@
 import { signInWithPopup } from "firebase/auth";
-import { auth, provider } from "./firebase";
+import { doc, getDoc, setDoc } from 'firebase/firestore';
+import { auth, provider, db } from "./firebase";
 import './index.css'
 
 function Login() {
@@ -7,11 +8,25 @@ function Login() {
     try {
       const result = await signInWithPopup(auth, provider);
 
-      console.log("Logged in:", result.user);
+      const user = result.user;
 
-      alert(`Welcome ${result.user.displayName}!`);
+      const userRef = doc(db, 'users', user.uid);
+
+      const userSnap = await getDoc(userRef);
+
+      if (!userSnap.exists()) {
+       await setDoc(userRef, {
+        name: user.displayName,
+        email: user.email,
+        photoURL: user.photoURL,
+        role: 'student',
+        createdAt: new Date().toISOString()
+       });
+      }
+
+      alert('Welcome ${user.displayName}!');
     } catch (error) {
-      console.error(error);
+        console.error(error);
     }
   };
 
