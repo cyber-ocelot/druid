@@ -35,7 +35,7 @@ function App() {
             <span class="hero-eyebrow-dot"></span>
             Academic integrity, reimagined
           </div>
-          <h1>Ancient wisdom.<br></br>Modern oversight.</h1>
+          <h1>Ancient wisdom. Modern oversight.</h1>
           <p class="hero-sub">
             Druid watches over AI interactions in real time — quietly flagging academic dishonesty so educators and students can build trust, not just grades.
           </p>
@@ -48,7 +48,7 @@ function App() {
         // FEATURES
         <section class="features" id="features">
           <p class="section-label">What Druid does</p>
-          <h2 class="section-title">Everything you need to<br></br>monitor AI use honestly</h2>
+          <h2 class="section-title">Everything you need to monitor AI use honestly</h2>
           <div class="feature-grid">
             <div class="glass-card">
               <span class="feat-icon">🔍</span>
