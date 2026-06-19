@@ -1,5 +1,6 @@
 import { signInWithPopup } from "firebase/auth";
 import { auth, provider } from "./firebase";
+import './index.css'
 
 function Login() {
   const handleLogin = async () => {
