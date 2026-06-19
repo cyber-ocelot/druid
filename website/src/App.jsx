@@ -3,6 +3,7 @@ import './index.css'
 
 import { useEffect, useState } from 'react'
 import { onAuthStateChanged } from 'firebase/auth'
+
 import { auth } from './firebase'
 
 import Login from './Login'
@@ -147,7 +148,7 @@ function App() {
           <div className="cta-card">
             <h2>Ready to bring integrity back?</h2>
             <p>Join Druid and start monitoring AI use with clarity, fairness, and purpose.</p>
-            <a href="auth.html" className="btn-primary"><span>Create your free account</span></a>
+            <Login />
           </div>
         </section>
 
