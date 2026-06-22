@@ -19,16 +19,16 @@ function App() {
       setLoading(false);
     });
 
-    if (loading) {
-      return <h1>Loading Druid...</h1>
-    }
-
-    if (user) {
-      return <Dashboard user={user} />
-    }
-
     return() => unsubscribe();
   }, []);
+
+  if (loading) {
+    return <h1>Loading Druid...</h1>
+  }
+
+  if (user) {
+    return <Dashboard user={user} />
+  }
 
   return (
     <>
