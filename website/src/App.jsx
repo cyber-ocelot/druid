@@ -23,7 +23,13 @@ function App() {
   }, []);
 
   if (loading) {
-    return <h1>Loading Druid...</h1>
+    return (
+      <section className="hero">
+          <div className="hero-eyebrow">
+            Loading Druid...
+          </div>
+        </section>
+    )
   }
 
   if (user) {
