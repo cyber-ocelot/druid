@@ -211,25 +211,25 @@ body {
 .btn:active { transform: scale(0.97); }
 
 .btn--primary {
-  background: var(--iris-1);
+  background: var(--amber);
   color: #fff;
   box-shadow: 0 2px 8px rgba(58, 210, 237, 0.25);
 }
 
 .btn--primary:hover {
-  background: linear-gradient(135deg, var(--iris-1), var(--iris-2));
+  background: linear-gradient(135deg, var(--amber), var(--iris-2));
   box-shadow: 0 3px 12px rgba(58, 210, 237, 0.35);
 }
 
 .btn--secondary {
-  background: var(--cream-dark);
+  background: transparent;
   color: var(--ink);
-  border: 1px solid var(--border);
+  border: 1px solid rgba(255,255,255,0.22);
   box-shadow: 0 1px 3px var(--shadow);
 }
 
 .btn--secondary:hover {
-  background: var(--border);
+  background: rgba(255,255,255,0.07);
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
