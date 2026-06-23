@@ -160,7 +160,7 @@ function App() {
       {/* Footer */}
       <footer>
         <span>© 2026 Druid</span>
-        <span><a href="#">Privacy</a></span>
+        <span><a href="#">Settings</a> · <a href="#">Privacy</a></span>
       </footer>
     </>
   )
