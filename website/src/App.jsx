@@ -50,7 +50,7 @@ function App() {
         <ul className="nav-links">
           <li><a href="#features">Features</a></li>
           <li><a href="#how-it-works">How it works</a></li>
-          <li><a href="auth.html" className="btn-nav">Sign in</a></li>
+          <li>{/*<a href="auth.html" className="btn-nav">Sign in</a>*/}<Login text={'Sign in'}/></li>
         </ul>
       </nav>
 
@@ -67,7 +67,6 @@ function App() {
             Druid watches over AI interactions in real time — quietly flagging academic dishonesty so educators and students can build trust, not just grades.
           </p>
           <div className="hero-actions">
-            {/*<a href="auth.html" className="btn-primary"><span>Get started free</span></a>*/}
             <Login text={'Get started now'}/>
             <a href="#how-it-works" className="btn-ghost">See how it works</a>
           </div>
@@ -152,7 +151,7 @@ function App() {
           <div className="cta-card">
             <h2>Ready to bring integrity back?</h2>
             <p>Join Druid and start monitoring AI use with clarity, fairness, and purpose.</p>
-            <Login />
+            <Login text={'Sign up now'}/>
           </div>
         </section>
 
