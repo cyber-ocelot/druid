@@ -25,7 +25,7 @@ function App() {
   if (loading) {
     return (
       <section className="hero">
-          <h1>Loading Druid...</h1>
+          <h2 className="section-title">Loading Druid...</h2>
         </section>
     )
   }
