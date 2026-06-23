@@ -145,7 +145,7 @@ body {
 /* Flags card */
 .card--flags {
   background: var(--amber-light);
-  border-color: #f0c89a;
+  border-color: #67e8f9;
 }
 
 .flags-header {
