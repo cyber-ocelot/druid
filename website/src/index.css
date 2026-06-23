@@ -198,7 +198,7 @@ nav {
   padding: 14px 32px;
   border-radius: 10px;
   border: none;
-  background: var(--iris-1) /*linear-gradient(135deg, #7c3aed, #06b6d4)*/;
+  background: #7c3aed /*linear-gradient(135deg, #7c3aed, #06b6d4)*/;
   color: #fff;
   font-family: 'Inter', sans-serif;
   font-size: 15px;
@@ -216,7 +216,7 @@ nav {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, var(--iris-1), #06b6d4) /*linear-gradient(135deg, #9d5cf5, #22d3ee, #e879f9)*/;
+  background: linear-gradient(135deg, #7c3aed, #06b6d4) /*linear-gradient(135deg, #9d5cf5, #22d3ee, #e879f9)*/;
   opacity: 0;
   transition: opacity 0.3s;
 }
