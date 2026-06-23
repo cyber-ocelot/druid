@@ -209,7 +209,7 @@ nav {
   position: relative;
   overflow: hidden;
   transition: transform 0.15s, box-shadow 0.15s;
-  box-shadow: 0 0 32px rgba(124,58,237,0.35);
+  box-shadow: 0 0 32px rgba(58, 210, 237, 0.35) /*rgba(124,58,237,0.35)*/;
 }
 
 .btn-primary::before {
