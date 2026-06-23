@@ -211,7 +211,7 @@ body {
 .btn:active { transform: scale(0.97); }
 
 .btn--primary {
-  background: var(--teal);
+  background: var(--iris-1);
   color: #fff;
   box-shadow: 0 2px 8px rgba(58, 210, 237, 0.25);
 }
