@@ -92,9 +92,9 @@ body {
 .header-badge {
   font-size: 10px;
   font-weight: 600;
-  color: rgba(255,255,255,0.55);
-  background: rgba(255,255,255,0.12);
-  border: 1px solid rgba(255,255,255,0.2);
+  color: #67e8f9;
+  background: rgba(58, 210, 237, 0.1) /*rgba(167,139,250,0.1)*/;
+  border: 1px solid rgba(58, 210, 237, 0.25) /*rgba(167,139,250,0.25)*/;
   border-radius: 20px;
   padding: 2px 8px;
   letter-spacing: 0.04em;
