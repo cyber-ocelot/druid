@@ -1,8 +1,10 @@
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    DESIGN TOKENS
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-   :root {
+:root {
   /* Palette — warm parchment + deep teal + amber */
+  --iris-1: #a78bfa;
+  --iris-2: #67e8f9;
   --cream:        #faf7f2;
   --cream-dark:   #f0ebe0;
   --ink:          #e8edf2;
@@ -211,12 +213,12 @@ body {
 .btn--primary {
   background: var(--teal);
   color: #fff;
-  box-shadow: 0 2px 8px rgba(42,107,107,0.25);
+  box-shadow: 0 2px 8px rgba(58, 210, 237, 0.25);
 }
 
 .btn--primary:hover {
-  background: var(--teal-hover);
-  box-shadow: 0 3px 12px rgba(42,107,107,0.35);
+  background: linear-gradient(135deg, var(--iris-1), var(--iris-2));
+  box-shadow: 0 3px 12px rgba(58, 210, 237, 0.35);
 }
 
 .btn--secondary {
