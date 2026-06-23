@@ -159,8 +159,8 @@ function App() {
 
       {/* Footer */}
       <footer>
-        <span>© 2025 Druid</span>
-        <span><a href="auth.html">Sign in</a> · <a href="#">Privacy</a></span>
+        <span>© 2026 Druid</span>
+        <span><Login text='Sign in' /> · <a href="#">Privacy</a></span>
       </footer>
     </>
   )
