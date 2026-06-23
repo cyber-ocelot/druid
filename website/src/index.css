@@ -19,7 +19,7 @@ body {
   min-height: 100vh;
   background:
     radial-gradient(circle at top left, #06b6d4 /*#7c3aed #b7f3ff*/, transparent 35%),
-    radial-gradient(circle at bottom right, #d8b4ff /*#d8b4ff*/, transparent 35%),
+    radial-gradient(circle at bottom right, #06b6d4 /*#d8b4ff*/, transparent 35%),
     linear-gradient(135deg, #0f172a, #1e293b, #312e81);
   font-family: 'Inter', sans-serif;
   color: var(--text);
