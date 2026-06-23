@@ -3,7 +3,7 @@ import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { auth, provider, db } from "./firebase";
 import './index.css'
 
-function Login() {
+function Login({ text }) {
   const handleLogin = async () => {
     try {
       const result = await signInWithPopup(auth, provider);
@@ -32,7 +32,7 @@ function Login() {
 
   return (
     <button className="btn-primary" onClick={handleLogin}>
-      <span>Continue with Google</span>
+      <span>{text}</span>
     </button>
   );
 }

@@ -68,7 +68,7 @@ function App() {
           </p>
           <div className="hero-actions">
             {/*<a href="auth.html" className="btn-primary"><span>Get started free</span></a>*/}
-            <Login />
+            <Login text={'Get started now'}/>
             <a href="#how-it-works" className="btn-ghost">See how it works</a>
           </div>
         </section>
