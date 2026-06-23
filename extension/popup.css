@@ -65,7 +65,7 @@ body {
 
 .header-icon {
   font-size: 22px;
-  color: #a8d8d8;
+  color: rgba(58, 210, 237, 0.25);
   line-height: 1;
   flex-shrink: 0;
 }
