@@ -5,7 +5,7 @@
   /* Palette — warm parchment + deep teal + amber */
   --cream:        #faf7f2;
   --cream-dark:   #f0ebe0;
-  --ink:          #67e8f9;
+  --ink:          #e8edf2;
   --ink-muted:    rgba(232,237,242,0.5);
   --teal:         #2a6b6b;
   --teal-light:   #e8f4f4;
@@ -33,7 +33,7 @@
 body {
   width: 320px;
   min-height: 200px;
-  background: var(--cream);
+  background: linear-gradient(135deg, #0f172a, #1e293b, #312e81);;
   color: var(--ink);
   font-family: var(--font-body);
   font-size: 14px;
