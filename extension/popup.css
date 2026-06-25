@@ -5,6 +5,7 @@
   /* Palette — warm parchment + deep teal + amber */
   --iris-1: #a78bfa;
   --iris-2: #67e8f9;
+  --iris-3: #f0abfc;
   --cream:        #faf7f2;
   --cream-dark:   #f0ebe0;
   --ink:          #e8edf2;
@@ -133,7 +134,7 @@ body {
   font-weight: 600;
   letter-spacing: 0.07em;
   text-transform: uppercase;
-  color: var(--teal);
+  color: var(--ink);
   margin-bottom: 3px;
 }
 
@@ -148,7 +149,7 @@ body {
 
 /* Flags card */
 .card--flags {
-  background: var(--amber-light);
+  background: linear-gradient(135deg, #e2d9f3, var(--iris-1), var(--iris-2), var(--iris-3));;
   border-color: #06b6d4;
 }
 
