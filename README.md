@@ -1,5 +1,4 @@
 # druid
----
 
 ## overall workflow
 > [extension] --> [database] --> [website]
