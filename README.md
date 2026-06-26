@@ -39,3 +39,5 @@ On November 30th, 2022, OpenAI launched the generative chatbot we've all become 
 Of course the big tech daddies aren't just gonna sit back and watch a new upstart swallow up all the consumers. After ChatGPT, the conveyor belt of AI chatbots only picked up speed. It continously kept spewing out new releases.  
 Gemini by Google---initially developed as Bard AI in 2024---came out stumbling on its own feet. Antropic released Claude, targetting the coders. Elon Musk released Grok because, well, he's Elon Musk.  
 One by one, society blazed with a wildfire that could either set to flames everything in its path---or, in doing so, create fresh new land for future generations to pave forward on.  
+
+> Yes, I know you all love my descriptive, helpful, and highly informative commit messages.
