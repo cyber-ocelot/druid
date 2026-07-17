@@ -40,4 +40,4 @@ Of course the big tech daddies aren't just gonna sit back and watch a new upstar
 Gemini by Google---initially developed as Bard AI in 2024---came out stumbling on its own feet. Antropic released Claude, targetting the coders. Elon Musk released Grok because, well, he's Elon Musk.  
 One by one, society blazed with a wildfire that could either set to flames everything in its path---or, in doing so, create fresh new land for future generations to pave forward on.  
 
-> Yes, I know you all love my descriptive, helpful, and highly informative commit messages.
+> Yes, I know you all love my descriptive, helpful, and highly informative commit messages---I'm trying to get better...
