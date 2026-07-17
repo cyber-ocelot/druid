@@ -5,7 +5,7 @@ import { getFirestore } from "firebase/firestore";
 
 // Website's firebase config
 const firebaseConfig = {
-  apiKey: "AIzaSyAC1pMaB9SRLsZWWhrHiUMYUF7zNNTgWSA",
+  apiKey: FIREBASE_API_KEY,
   authDomain: "druid-e28a5.firebaseapp.com",
   projectId: "druid-e28a5",
   storageBucket: "druid-e28a5.firebasestorage.app",
