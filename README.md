@@ -1,5 +1,5 @@
 # druid
-As of 6/26/2026, a humble caterpillar hoping to metamorph into a magnificent butterfly.
+As of 7/17/2026, a humble caterpillar hoping to metamorph into a magnificent butterfly.
 
 ## overall workflow
 > [extension] --> [database] --> [website]
