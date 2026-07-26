@@ -12,7 +12,7 @@ const {
   VITE_FIREBASE_MESSAGING_SENDER_ID: messagingSenderId,
   VITE_FIREBASE_APP_ID: appId,
   VITE_FIREBASE_MEASUREMENT_ID: measurementId
-}
+}  = import.meta.dev;
 
 // Website's firebase config
 const firebaseConfig = {

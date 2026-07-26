@@ -42,4 +42,4 @@ One by one, society blazed with a wildfire that could either set to flames every
 Druid was a random thought that soon blossomed into a "eureka!" moment. If teachers were able to enforce the line drawn between AI usage and AI misusage, they would have one less headache to worry about. Students wouldn't have to guess and constantly question their actions---and innocent pupils wouldn't need to get blamed mistakenly.  
 I'm willing to run the extra mile, go the whole nine yards, break new ground---because Druid is merely the tip of the iceberg that is  hanging on a thin thread between salvation and destruction; AI regulation.
 
-> Yes, I know you all love my descriptive, helpful, and highly informative commit messages---I'm trying to get better...
+> big ideas have small beginnings
