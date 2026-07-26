@@ -49,23 +49,23 @@ extension/
   <img src="./images/extension/flag_count.png" alt="Flag count" width="500" />
 </p>
 
-4) WIP: Saved information--the flag count and the actions on the AI website that triggered the flags---will be pulled from the database to be displayed on the website when logged in with user's credentials.
+4) ***WIP:*** Saved information--the flag count and the actions on the AI website that triggered the flags---will be pulled from the database to be displayed on the website when logged in with user's credentials.
 
 ## website interface
 As of now, the Druid runs on a local server and is only accesible via `npm run dev` and other `npm` commands. Built with `React.js` on the `Vite` interface, this website acts as a homebase for everything Druid.
-1) The landing/home page; the very first thing you see
+1) **The landing/home page;** the very first thing you see
 
 <p align="center">
   <img src="./images/website/home.png" alt="Landing/home page" width="500" />
 </p>
 
-2) The "features" page; a list of Druid's substantial features
+2) **The "features" page;** a list of Druid's substantial features
 
 <p align="center">
   <img src="./images/website/features.png" alt="Features page" width="500" />
 </p>
 
-3) The "how it works" page; a breakdown of Druid's functions and how it works---essentially the "workflow" section of this `README.md` in short form
+3) **The "how it works" page;** a breakdown of Druid's functions and how it works---essentially the "workflow" section of this `README.md` in short form
 
 <p align="center">
   <img src="./images/website/how_it_works.png" alt="How it works page" width="500" />
@@ -77,7 +77,7 @@ As of now, the Druid runs on a local server and is only accesible via `npm run d
   <img src="./images/website/get_started.png" alt="Get started page" width="500" />
 </p>
 
-5) P.S.: you log in once, Druid remembers you forever---unless you delete your account, which no sane person would do after experiencing Druid.
+5) *P.S.:* you log in once, Druid remembers you forever---unless you delete your account, which no sane person would do after experiencing Druid.
 
 <p align="center">
   <img src="./images/website/welcome_back.png" alt="Welcome back page" width="500" />
