@@ -1,0 +1,72 @@
+# ==========================================
+# Operating System Files
+# ==========================================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.trash/
+
+# ==========================================
+# IDEs and Code Editors
+# ==========================================
+# Visual Studio Code
+.vscode/
+!.vscode/extensions.json
+*.code-workspace
+
+# JetBrains (IntelliJ, WebStorm, PyCharm, etc.)
+.idea/
+*.iws
+
+# Eclipse
+.metadata/
+bin/
+tmp/
+*.tmp
+*.bak
+
+# ==========================================
+# Logs and Databases
+# ==========================================
+*.log
+*.sqlite
+*.sql
+
+# ==========================================
+# Environments and Secrets (CRITICAL)
+# ==========================================
+.env
+.env.local
+.env.*.local
+*.env
+*.pem
+*.key
+certs/
+
+# ==========================================
+# Common Packages & Build Outputs (Language Specific)
+# ==========================================
+node_modules/
+bower_components/
+dist/
+build/
+out/
+target/
+.venv/
+venv/
+ENV/
