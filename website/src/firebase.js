@@ -3,15 +3,26 @@ import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
+// Pull from .env
+const {
+  VITE_FIREBASE_API_KEY: apiKey,
+  VITE_FIREBASE_AUTH_DOMAIN: authDomain,
+  VITE_FIREBASE_PROJECT_ID: projectId,
+  VITE_FIREBASE_STORAGE_BUCKET: storageBucket,
+  VITE_FIREBASE_MESSAGING_SENDER_ID: messagingSenderId,
+  VITE_FIREBASE_APP_ID: appId,
+  VITE_FIREBASE_MEASUREMENT_ID: measurementId
+}
+
 // Website's firebase config
 const firebaseConfig = {
-  apiKey: FIREBASE_API_KEY,
-  authDomain: "druid-e28a5.firebaseapp.com",
-  projectId: "druid-e28a5",
-  storageBucket: "druid-e28a5.firebasestorage.app",
-  messagingSenderId: "92990634906",
-  appId: "1:92990634906:web:14345204f8866f654dd823",
-  measurementId: "G-SCWDS25CCJ"
+  apiKey: apiKey,
+  authDomain: authDomain,
+  projectId: projectId,
+  storageBucket: storageBucket,
+  messagingSenderId: messagingSenderId,
+  appId: appId,
+  measurementId: measurementId
 };
 
 // Firebase config
