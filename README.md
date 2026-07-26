@@ -39,5 +39,7 @@ On November 30th, 2022, OpenAI launched the generative chatbot we've all become 
 Of course the big tech daddies aren't just gonna sit back and watch a new upstart swallow up all the consumers. After ChatGPT, the conveyor belt of AI chatbots only picked up speed. It continously kept spewing out new releases.  
 Gemini by Google---initially developed as Bard AI in 2024---came out stumbling on its own feet. Antropic released Claude, targetting the coders. Elon Musk released Grok because, well, he's Elon Musk.  
 One by one, society blazed with a wildfire that could either set to flames everything in its path---or, in doing so, create fresh new land for future generations to pave forward on.  
+Druid was a random thought that soon blossomed into a "eureka!" moment. If teachers were able to enforce the line drawn between AI usage and AI misusage, they would have one less headache to worry about. Students wouldn't have to guess and constantly question their actions---and innocent pupils wouldn't need to get blamed mistakenly.  
+I'm willing to run the extra mile, go the whole nine yards, break new ground---because Druid is merely the tip of the iceberg that is  hanging on a thin thread between salvation and destruction; AI regulation.
 
 > Yes, I know you all love my descriptive, helpful, and highly informative commit messages---I'm trying to get better...
