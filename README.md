@@ -40,9 +40,9 @@ extension/
 As of now, the Druid runs on a local server and is only accesible via `npm run dev` and other `npm` commands. Built with `React.js` on the `Vite` interface, this website acts as a homebase for everything Druid.
 1. The landing/home page; the very first thing you see
 ![Landing/home page](./images/website/home.png)
-2. A list of Druid's substantial features
+2. The "features" page; a list of Druid's substantial features
 ![Features page](./images/website/features.png)
-3. Breakdown of Druid's functions and how it works---essentially the "workflow" section of this `README.md` in short form
+3. The "how it works" page; a breakdown of Druid's functions and how it works---essentially the "workflow" section of this `README.md` in short form
 ![How does it work? page](./images/website/how_it_works.png)
 4. Let's get started and sign up to experience Druid's magic!
 ![Get started now! page](./images/website/get_started.png)
