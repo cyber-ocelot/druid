@@ -38,7 +38,9 @@ extension/
 
     - "Flags" get ticked up one whenever the user: types an academically dishonest prompt (as mentioned before), copies and pastes something into the input field, or uploads files to the chatbot.
 
+    <p align="center">
     <img src="./images/extension/copy_paste.png" width="45%" /> <img src="./images/extension/image_upload.png" width="45%" />
+    </p>
 
     - As the user will be signed in via the account they created on the website beforehand as part of the registration process, their data will be saved.
 3) The "flag count" they got for the day as well as each prompt/action that triggered each flag will be saved in a secure database by Druid.
