@@ -1,72 +1,72 @@
-# Created by https://www.toptal.com/developers/gitignore/api/macos,visualstudiocode,react
-# Edit at https://www.toptal.com/developers/gitignore?templates=macos,visualstudiocode,react
-
-### macOS ###
-# General
+# ==========================================
+# Operating System Files
+# ==========================================
+# macOS
 .DS_Store
 .AppleDouble
 .LSOverride
-
-# Icon must end with two \r
-Icon
-
-
-# Thumbnails
 ._*
 
-# Files that might appear in the root of a volume
-.DocumentRevisions-V100
-.fseventsd
-.Spotlight-V100
-.TemporaryItems
-.Trashes
-.VolumeIcon.icns
-.com.apple.timemachine.donotpresent
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+desktop.ini
+$RECYCLE.BIN/
+*.lnk
 
-# Directories potentially created on remote AFP share
-.AppleDB
-.AppleDesktop
-Network Trash Folder
-Temporary Items
-.apdisk
+# Linux
+*~
+.fuse_hidden*
+.directory
+.trash/
 
-### macOS Patch ###
-# iCloud generated files
-*.icloud
-
-### react ###
-.DS_*
-*.log
-logs
-**/*.backup.*
-**/*.back.*
-
-node_modules
-bower_components
-
-*.sublime*
-
-psd
-thumb
-sketch
-
-### VisualStudioCode ###
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
+# ==========================================
+# IDEs and Code Editors
+# ==========================================
+# Visual Studio Code
+.vscode/
 !.vscode/extensions.json
-!.vscode/*.code-snippets
+*.code-workspace
 
-# Local History for Visual Studio Code
-.history/
+# JetBrains (IntelliJ, WebStorm, PyCharm, etc.)
+.idea/
+*.iws
 
-# Built Visual Studio Code Extensions
-*.vsix
+# Eclipse
+.metadata/
+bin/
+tmp/
+*.tmp
+*.bak
 
-### VisualStudioCode Patch ###
-# Ignore all local history of files
-.history
-.ionide
+# ==========================================
+# Logs and Databases
+# ==========================================
+*.log
+*.sqlite
+*.sql
 
-# End of https://www.toptal.com/developers/gitignore/api/macos,visualstudiocode,react
+# ==========================================
+# Environments and Secrets (CRITICAL)
+# ==========================================
+.env
+.env.local
+.env.*.local
+*.env
+*.pem
+*.key
+certs/
+
+# ==========================================
+# Common Packages & Build Outputs (Language Specific)
+# ==========================================
+node_modules/
+bower_components/
+dist/
+build/
+out/
+target/
+.venv/
+venv/
+ENV/
