@@ -24,11 +24,30 @@ extension/
 
 ### workflow
 1. Once the extension is in your browser, it will check whether the website it runs on is actually AI or not. Otherwise, logic that should only run on AI sites will be running everywhere and that's not what this application is built for, nor is it efficient.
-2. If Druid determines the website is not AI, it lets the user be. If it determines the site is AI, it falls into a loop of conditionals.
-3. Whenever the user types a prompt, Druid is able to check whether or not the said prompt crosses the line of academic dishonesty or not. If the user is deemed to be crossing it, the "flag" count gets ticked up one.
-4. "Flags" get ticked up one whenever the user: types an academically dishonest prompt (as mentioned before), copies and pastes something into the input field, or uploads files to the chatbot.
-5. As the user will be signed in via the account they created on the website beforehand as part of the registration process, their data will be saved.
-6. The "flag count" they got for the day as well as each prompt/action that triggered each flag will be saved in a secure database by Druid.
+![AI detection](./images/extension/ai_detection.png)
+2. If Druid determines the website is not AI, it lets the user be. If it determines the site is AI, it falls into a loop of conditionals:
+    a. Whenever the user types a prompt, Druid is able to check whether or not the said prompt crosses the line of academic dishonesty or not. If the user is deemed to be crossing it, the "flag" count gets ticked up one.
+    ![Academic dishonesty](./images/extension/academic_dishonesty.png)
+    b. "Flags" get ticked up one whenever the user: types an academically dishonest prompt (as mentioned before), copies and pastes something into the input field, or uploads files to the chatbot.
+    ![Copy paste](./images/extension/copy_paste.png)
+    ![Image upload](./images/extension/image_upload.png)
+    c. As the user will be signed in via the account they created on the website beforehand as part of the registration process, their data will be saved.
+3. The "flag count" they got for the day as well as each prompt/action that triggered each flag will be saved in a secure database by Druid.
+![Flag count](./images/extension/flag_count.png)
+4. WIP: Saved information--the flag count and the actions on the AI website that triggered the flags---will be pulled from the database to be displayed on the website when logged in with user's credentials.
+
+## website interface
+As of now, the Druid runs on a local server and is only accesible via `npm run dev` and other `npm` commands. Built with `React.js` on the `Vite` interface, this website acts as a homebase for everything Druid.
+1. The landing/home page; the very first thing you see
+![Landing/home page](./images/website/home.png)
+2. A list of Druid's substantial features
+![Features page](./images/website/features.png)
+3. Breakdown of Druid's functions and how it works---essentially the "workflow" section of this `README.md` in short form
+![How does it work? page](./images/website/how_it_works.png)
+4. Let's get started and sign up to experience Druid's magic!
+![Get started now! page](./images/website/get_started.png)
+5. P.S.: you log in once, Druid remembers you forever---unless you delete your account, which no sane person would do after experiencing Druid.
+![Welcome back! page](./images/website/welcome_back.png)
 
 ## the story - because every big thing has one
 My extension is centered around the concept we've all been facing as of recently---with distrust, joy, or (more often that not) an angsty type of fear.  
