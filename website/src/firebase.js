@@ -25,6 +25,9 @@ const firebaseConfig = {
   measurementId
 };
 
+// Debugging purposes
+console.log("API Key:", firebaseConfig.apiKey);
+
 // Firebase config
 const app = initializeApp(firebaseConfig);
 
