@@ -5,7 +5,7 @@ As of 7/17/2026, a humble caterpillar hoping to metamorph into a magnificent but
 > [extension] --> [database] --> [website]
 
 ## extension
-Like adding Grammarly, AdBlocker, or Google Translate to Chrome---the default browser of many---Druid can be uploaded as well (once completed---still a WIP that needs some TLC).
+Like adding Grammarly, AdBlocker, or Google Translate to Chrome---the default browser of many---Druid can be uploaded as well (once completed to the full extent).
 
 ### file structure
 
@@ -20,6 +20,25 @@ extension/
 ├── content.js        ← Injected into web pages (DOM access)
 ├── README.md         ← Extension README.md - further detailed explanation, hopefully
 └── icons/            ← Icons...if you didn't know
+website/
+├── node-modules/
+├── public/
+├── src/
+  ├── assets/
+  ├── App.css
+  ├── App.jsx
+  ├── Dashboard.jsx
+  ├── firebase.js
+  ├── index.css
+  ├── Login.jsx
+  ├── main.jsx
+├── eslint.config.js
+├── index.html
+├── package-lock.json
+├── package.json
+├── README.md
+├── vite.config.js
+
 ```
 
 ### workflow
@@ -100,5 +119,5 @@ I'm willing to run the extra mile, go the whole nine yards, break new ground---b
 
 ## citing this project
 
-If you use this tool in a project or school assignment, please cite it as:
+If you use this product in a project or school assignment, please cite it as:
 > Thuviksa Mathialakan, "Druid", GitHub Repository, 2026. Available at: https://github.com/cyber-ocelot/druid
