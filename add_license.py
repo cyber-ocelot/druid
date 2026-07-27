@@ -69,7 +69,8 @@ SOURCE_EXTENSIONS = {
     ".go", ".rs",
     ".pl", ".rb",
     ".yml", ".yaml",
-    ".cmake"
+    ".cmake",
+    ".css"
 }
 
 # Directories to skip
