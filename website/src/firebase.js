@@ -73,13 +73,13 @@ const {
 
 // Website's firebase config
 const firebaseConfig = {
-  apiKey, 
-  authDomain, 
-  projectId, 
-  storageBucket, 
-  messagingSenderId, 
-  appId, 
-  measurementId
+  apiKey: apiKey, 
+  authDomain: authDomain, 
+  projectId: projectId, 
+  storageBucket: storageBucket, 
+  messagingSenderId: messagingSenderId, 
+  appId: appId, 
+  measurementId: measurementId
 };
 
 // Debugging purposes
