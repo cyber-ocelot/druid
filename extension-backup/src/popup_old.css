@@ -1,0 +1,391 @@
+/*
+ * GNU AFFERO GENERAL PUBLIC LICENSE
+ *                        Version 3, 19 November 2007
+ * 
+ *  Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>
+ *  Everyone is permitted to copy and distribute verbatim copies
+ *  of this license document, but changing it is not allowed.
+ * 
+ *                             Preamble
+ * 
+ *   The GNU Affero General Public License is a free, copyleft license for
+ * software and other kinds of works, specifically designed to ensure
+ * cooperation with the community in the case of network server software.
+ * 
+ *   The licenses for most software and other practical works are designed
+ * to take away your freedom to share and change the works.  By contrast,
+ * our General Public Licenses are intended to guarantee your freedom to
+ * share and change all versions of a program--to make sure it remains free
+ * software for all its users.
+ * 
+ *   When we speak of free software, we are referring to freedom, not
+ * price.  Our General Public Licenses are designed to make sure that you
+ * have the freedom to distribute copies of free software (and charge for
+ * them if you wish), that you receive source code or can get it if you
+ * want it, that you can change the software or use pieces of it in new
+ * free programs, and that you know you can do these things.
+ * 
+ *   Developers that use our General Public Licenses protect your rights
+ * with two steps: (1) assert copyright on the software, and (2) offer
+ * you this License which gives you legal permission to copy, distribute
+ * and/or modify the software.
+ * 
+ *   A secondary benefit of defending all users' freedom is that
+ * improvements made in alternate versions of the program, if they
+ * receive widespread use, become available for other developers to
+ * incorporate.  Many developers of free software are heartened and
+ * encouraged by the resulting cooperation.  However, in the case of
+ * software used on network servers, this result may fail to come about.
+ * The GNU General Public License permits making a modified version and
+ * letting the public access it on a server without ever releasing its
+ * source code to the public.
+ * 
+ *   The GNU Affero General Public License is designed specifically to
+ * ensure that, in such cases, the modified source code becomes available
+ * to the community.  It requires the operator of a network server to
+ * provide the source code of the modified version running there to the
+ * users of that server.  Therefore, public use of a modified version, on
+ * a publicly accessible server, gives the public access to the source
+ * code of the modified version.
+ * 
+ *   An older license, called the Affero General Public License and
+ * published by Affero, was designed to accomplish similar goals.  This is
+ * a different license, not a version of the Affero GPL, but Affero has
+ * released a new version of the Affero GPL which permits relicensing under
+ * this license.
+ */
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   DESIGN TOKENS
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+:root {
+  /* Druid Website Palette */
+  --cream:        #111827;
+  --cream-dark:   #1f2937;
+
+  --ink:          #e8edf2;
+  --ink-muted:    rgba(232,237,242,0.65);
+
+  --teal:         #7c3aed;
+  --teal-light:   rgba(103,232,249,0.08);
+  --teal-hover:   #8b5cf6;
+
+  --amber:        #67e8f9;
+  --amber-light:  rgba(167,139,250,0.10);
+
+  --border:       rgba(255,255,255,0.10);
+
+  --shadow:       rgba(124,58,237,0.18);
+
+  --font-display: 'Cinzel', Georgia, serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-lg: 16px;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   RESET & BASE
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  width: 320px;
+  min-height: 200px;
+
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(103,232,249,0.15),
+      transparent 40%
+    ),
+    radial-gradient(
+      circle at bottom right,
+      rgba(167,139,250,0.18),
+      transparent 45%
+    ),
+    linear-gradient(
+      135deg,
+      #0f172a,
+      #1e293b,
+      #312e81
+    );
+
+  color: var(--ink);
+
+  font-family: var(--font-body);
+
+  font-size: 14px;
+
+  line-height: 1.5;
+
+  overflow-x: hidden;
+
+  animation: fadeIn .25s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   HEADER
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 16px 16px 14px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(124,58,237,.85),
+      rgba(6,182,212,.85)
+    );
+
+  border-bottom: 1px solid rgba(255,255,255,.12);
+}
+
+.header-icon {
+  font-size: 22px;
+  color: #a8d8d8;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.header-text { flex: 1; }
+
+.title {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 0.01em;
+  line-height: 1.2;
+}
+
+.subtitle {
+  font-size: 11.5px;
+  color: rgba(255,255,255,0.65);
+  margin-top: 1px;
+  font-style: italic;
+  font-family: var(--font-display);
+}
+
+.header-badge {
+  font-size: 10px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.55);
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 20px;
+  padding: 2px 8px;
+  letter-spacing: 0.04em;
+  align-self: flex-start;
+  margin-top: 2px;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   MAIN
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.main {
+  padding: 14px 14px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   CARDS
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.card {
+  border-radius: var(--r-md);
+
+  border: 1px solid rgba(255,255,255,.10);
+
+  padding: 10px 12px;
+
+  background: rgba(255,255,255,.05);
+
+  backdrop-filter: blur(16px);
+
+  box-shadow:
+    0 0 20px rgba(124,58,237,.08);
+}
+
+/* Status card */
+.card--status .card-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin-bottom: 3px;
+}
+
+.card--status .card-value {
+  font-size: 12.5px;
+  color: var(--teal);
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Flags card */
+.card--flags {
+  background: rgba(167,139,250,.10);
+
+  border-color: rgba(167,139,250,.20);
+}
+
+.flags-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 5px;
+}
+
+.flags-icon { font-size: 14px; }
+
+.flags-label {
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--amber);
+}
+
+.flags-text {
+  font-size: 12.5px;
+  color: var(--ink);
+  line-height: 1.55;
+  font-family: var(--font-display);
+  font-style: italic;
+}
+
+.flags-text code {
+  font-family: 'Courier New', monospace;
+  font-style: normal;
+  font-size: 11.5px;
+  background: rgba(217,124,43,0.12);
+  padding: 1px 4px;
+  border-radius: 4px;
+  color: #b8621f;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   BUTTONS
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btn {
+  flex: 1;
+  padding: 9px 12px;
+  border-radius: var(--r-sm);
+  border: none;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.15s ease;
+  letter-spacing: 0.01em;
+}
+
+.btn:active { transform: scale(0.97); }
+
+.btn--primary {
+  background:
+    linear-gradient(
+      135deg,
+      #7c3aed,
+      #06b6d4
+    );
+
+  color: white;
+
+  box-shadow:
+    0 4px 20px rgba(124,58,237,.25);
+}
+
+.btn--primary:hover {
+  background:
+    linear-gradient(
+      135deg,
+      #8b5cf6,
+      #22d3ee
+    );
+}
+
+.btn--secondary {
+  background: var(--cream-dark);
+  color: var(--ink);
+  border: 1px solid var(--border);
+  box-shadow: 0 1px 3px var(--shadow);
+}
+
+.btn--secondary:hover {
+  background: var(--border);
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   OUTPUT AREA
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.output {
+  border-radius: var(--r-md);
+  border: 1px solid var(--teal-light);
+  background: var(--teal-light);
+  padding: 10px 12px;
+  animation: slideDown 0.2s ease;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.output-label {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--teal);
+  margin-bottom: 4px;
+}
+
+.output-text {
+  font-size: 13px;
+  color: var(--ink);
+  line-height: 1.5;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   FOOTER
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.footer {
+  padding: 8px 14px 10px;
+  font-size: 11px;
+  color: var(--ink-muted);
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+
+.footer a {
+  color: var(--teal);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.footer a:hover { text-decoration: underline; }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   UTILITY
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+[hidden] { display: none !important; }
