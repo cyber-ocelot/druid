@@ -60,6 +60,9 @@
 //  Runs in the background even when the popup is closed.
 // ══════════════════════════════════════════════════════
 
+// ── Firebase Import(s) ────────────────────────────────
+import { auth, db } from "./firebase.js";
+
 // ── Install / Update ──────────────────────────────────
 chrome.runtime.onInstalled.addListener((details) => {
   if (details.reason === "install") {
@@ -89,7 +92,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     console.log("[Background] received:", message.prompt);
     console.log("[Background] on AI site:", message.AIstatus);
 
-    analyzePrompt(message.prompt, message.AIstatus);
+    await analyzePrompt(message.prompt, message.AIstatus);
   }
 
   if (message.type === "IMAGE_UPLOADED") {
@@ -101,19 +104,62 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         .catch(() => console.log("[Background] Could not reach content script."));
     });
 
+    // write to Firestore
+    addFlag({
+      event: "IMAGE_UPLOADED",
+      prompt: prompt,
+      aiSite: AIstatus,
+      timestamp: new Date().toISOString()
+    });
+
     // increment tally in storage
-    chrome.storage.local.get(["flagCount"], (result) => {
+    /*chrome.storage.local.get(["flagCount"], (result) => {
       console.log("[Background] Adding to flagCount.");
       const newCount = (result.flagCount || 0) + 1;
       chrome.storage.local.set({ flagCount: newCount });
-    });
+    });*/
   };
+
+  switch(message.type) {
+
+    case "LOGIN":
+      login();
+      break;
+    
+    case "FLAG":
+      addFlag(message);
+      break;
+
+  }
 
   return true; // keep message channel open for async responses
 });
 
+// ── Login Function ──────────────────────────────────────────────
+async function login() {
+  // launch Google OAuth
+  // get OAuth token
+  // exchange for Firebase credential
+  // sign in
+
+  console.log(auth.currentUser);
+}
+
+// ── Saving Flag Data in Firestore ───────────────────────────────────
+async function addFlag(flagData) {
+  
+  if (!auth.currentUser) {
+    console.log("[Background] No user logged in.");
+    return;
+  }
+
+  // Firestore write
+
+  console.log("Saving:",flagData);
+}
+
 // ── Analyze AI Prompt ──────────────────────────────────
-function analyzePrompt(prompt, AIstatus) {
+async function analyzePrompt(prompt, AIstatus) {
   console.log("[Background] analyzePrompt called with:", prompt);
   
   const cheatPhrases = [
@@ -146,12 +192,20 @@ function analyzePrompt(prompt, AIstatus) {
         .catch(() => console.log("[Background] Could not reach content script."));
     });
 
+    // write to Firestore
+    addFlag({
+      event: "PROMPT_FLAGGED",
+      prompt: prompt,
+      aiSite: AIstatus,
+      timestamp: new Date().toISOString()
+    });
+
     // increment tally in storage
-    chrome.storage.local.get(["flagCount"], (result) => {
+    /*chrome.storage.local.get(["flagCount"], (result) => {
       console.log("[Background] Adding to flagCount.");
       const newCount = (result.flagCount || 0) + 1;
       chrome.storage.local.set({ flagCount: newCount });
-    });
+    });*/
   }
 
   return flagged;

@@ -57,6 +57,7 @@ tmp/
 *.pem
 *.key
 certs/
+client_secret.json
 
 # ==========================================
 # Common Packages & Build Outputs (Language Specific)
