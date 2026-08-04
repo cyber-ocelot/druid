@@ -19,7 +19,7 @@ extension/
     ├── background.js     ← Background service worker (runs always)
     ├── content.js        ← Injected into web pages (DOM access)
     ├──firebase.js
-├── manifest.json     ← Extension config (name, permissions, etc.)
+├── manifest.json         ← Extension config (name, permissions, etc.)
 ├──package-lock.json
 ├──package.json
 ├──README.md
