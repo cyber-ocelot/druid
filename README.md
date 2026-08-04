@@ -11,15 +11,21 @@ Like adding Grammarly, AdBlocker, or Google Translate to Chrome---the default br
 
 ```
 extension/
+extension/
+├──src/
+    ├── popup.html        ← The UI shown when you click the extension icon
+    ├── popup.css         ← All styles — edit colors/fonts here
+    ├── popup.js          ← Popup logic — edit buttons & tips here
+    ├── background.js     ← Background service worker (runs always)
+    ├── content.js        ← Injected into web pages (DOM access)
+    ├──firebase.js
 ├── manifest.json     ← Extension config (name, permissions, etc.)
-├── popup.html        ← The UI shown when you click the extension icon
-├── popup.css         ← All styles — edit colors/fonts here
-├── popup_old.css     ← Just ignore - development purposes only
-├── popup.js          ← Popup logic — edit buttons & tips here
-├── background.js     ← Background service worker (runs always)
-├── content.js        ← Injected into web pages (DOM access)
-├── README.md         ← Extension README.md - further detailed explanation, hopefully
-└── icons/            ← Icons...if you didn't know
+├──package-lock.json
+├──package.json
+├──README.md
+└── public/  
+    ├── popup.html        ← The UI shown when you click the extension icon
+    ├── icons/            ← Icons
 website/
 ├── node-modules/
 ├── public/
