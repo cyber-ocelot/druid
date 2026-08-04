@@ -79,7 +79,7 @@ chrome.runtime.onInstalled.addListener((details) => {
 
 // ── Message Listener ──────────────────────────────────
 // listen for messages from popup.js or content.js
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
   console.log("[Background] Message received:", message);
 
   // example: handle a "ping" message
