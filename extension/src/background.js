@@ -137,8 +137,16 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
 // ── Login Function ──────────────────────────────────────────────
 async function login() {
-  // launch Google OAuth
   // get OAuth token
+  try {
+
+    const token = await chrome.identity.getAuthToken({
+      interactive: true
+    });
+
+  } catch (error) {
+    console.error(error);
+  }
   // exchange for Firebase credential
   // sign in
 
