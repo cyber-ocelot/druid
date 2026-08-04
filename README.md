@@ -10,40 +10,44 @@ Like adding Grammarly, AdBlocker, or Google Translate to Chrome---the default br
 ### file structure
 
 ```
-extension/
-extension/
-├──src/
-    ├── popup.html        ← The UI shown when you click the extension icon
-    ├── popup.css         ← All styles — edit colors/fonts here
-    ├── popup.js          ← Popup logic — edit buttons & tips here
-    ├── background.js     ← Background service worker (runs always)
-    ├── content.js        ← Injected into web pages (DOM access)
-    ├──firebase.js
-├── manifest.json         ← Extension config (name, permissions, etc.)
-├──package-lock.json
-├──package.json
-├──README.md
-└── public/  
-    ├── popup.html        ← The UI shown when you click the extension icon
-    ├── icons/            ← Icons
-website/
-├── node-modules/
-├── public/
-├── src/
-  ├── assets/
-  ├── App.css
-  ├── App.jsx
-  ├── Dashboard.jsx
-  ├── firebase.js
-  ├── index.css
-  ├── Login.jsx
-  ├── main.jsx
-├── eslint.config.js
-├── index.html
-├── package-lock.json
-├── package.json
-├── README.md
-├── vite.config.js
+druid/
+├── extension/
+  ├── src/
+      ├── popup.html        ← The UI shown when you click the extension icon
+      ├── popup.css         ← All styles — edit colors/fonts here
+      ├── popup.js          ← Popup logic — edit buttons & tips here
+      ├── background.js     ← Background service worker (runs always)
+      ├── content.js        ← Injected into web pages (DOM access)
+      ├──firebase.js
+  ├── manifest.json         ← Extension config (name, permissions, etc.)
+  ├──package-lock.json
+  ├──package.json
+  ├──README.md
+  └── public/  
+      ├── popup.html        ← The UI shown when you click the extension icon
+      ├── icons/            ← Icons
+├── website/
+  ├── node-modules/
+  ├── public/
+  ├── src/
+    ├── assets/
+    ├── App.css
+    ├── App.jsx
+    ├── Dashboard.jsx
+    ├── firebase.js
+    ├── index.css
+    ├── Login.jsx
+    ├── main.jsx
+  ├── eslint.config.js
+  ├── index.html
+  ├── package-lock.json
+  ├── package.json
+  ├── README.md
+  └── vite.config.js
+├── add_license.py
+├── license_preamble.txt
+├── LICENSE
+└── README.md
 
 ```
 
