@@ -6,7 +6,7 @@
   "description": "WIP.",
 
   "action": {
-    "default_popup": "public/popup.html",
+    "default_popup": "./public/popup.html",
     "default_title": "Druid"
   },
 
@@ -35,22 +35,22 @@
   ],
 
   "background": {
-    "service_worker": "src/background.js",
+    "service_worker": "./src/background.js",
     "type": "module"
   },
 
   "content_scripts": [
     {
       "matches": ["http://*/*", "https://*/*"],
-      "js": ["src/content.js"],
+      "js": ["./src/content.js"],
       "run_at": "document_idle"
     }
   ],
 
   "icons": {
-    "16": "public/icons/icon16.png",
-    "48": "public/icons/icon48.png",
-    "128": "public/icons/icon128.png"
+    "16": "./public/icons/icon16.png",
+    "48": "./public/icons/icon48.png",
+    "128": "./public/icons/icon128.png"
   },
 
   "content_security_policy": {
