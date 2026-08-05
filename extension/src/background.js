@@ -66,14 +66,14 @@ import { auth, db } from "./firebase.js";
 // ── Install / Update ──────────────────────────────────
 chrome.runtime.onInstalled.addListener((details) => {
   if (details.reason === "install") {
-    console.log("[Extension] Installed for the first time.");
+    console.log("[Background] Installed for the first time.");
     // set any default storage values here:
     chrome.storage.sync.set({ exampleSetting: true });
     // API key storage
     //chrome.storage.local.set({geminiKey: "AIzaSyAIs5RV9NeBV7MBzQMcRyqCWxAHKbq0KxQ"})
   }
   if (details.reason === "update") {
-    console.log("[Extension] Updated to version", chrome.runtime.getManifest().version);
+    console.log("[Background] Updated to version", chrome.runtime.getManifest().version);
   }
 });
 
@@ -144,13 +144,15 @@ async function login() {
       interactive: true
     });
 
+    console.log("[Background] Token:", token);
+
   } catch (error) {
-    console.error(error);
+    console.error("[Background] Login error:", error);
   }
   // exchange for Firebase credential
   // sign in
 
-  console.log(auth.currentUser);
+  console.log("[Background] Current user:", auth.currentUser);
 }
 
 // ── Saving Flag Data in Firestore ───────────────────────────────────

@@ -137,6 +137,8 @@ btnAction.addEventListener("click", () => {
 // ── 8. LOGIN BUTTON ────────────────────────────────
 // sends login message to background.js
 btnLogin.addEventListener("click", () => {
+  console.log("[Popup] Login button clicked.");
+  
   chrome.runtime.sendMessage ({
     type: "LOGIN"
   });

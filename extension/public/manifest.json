@@ -6,7 +6,7 @@
   "description": "WIP.",
 
   "action": {
-    "default_popup": "./public/popup.html",
+    "default_popup": "./popup.html",
     "default_title": "Druid"
   },
 
@@ -19,7 +19,7 @@
   ],
 
   "oauth2": {
-    "client_id": "92990634906-6ucrgdg9uglosa0039ak7f3sk6sihmga.apps.googleusercontent.com",
+    "client_id": "92990634906-2dmv78euomqlof6gci53sb1ica048l7g.apps.googleusercontent.com",
     "scopes": [
       "openid",
       "email",
@@ -35,22 +35,22 @@
   ],
 
   "background": {
-    "service_worker": "./src/background.js",
+    "service_worker": "./background.js",
     "type": "module"
   },
 
   "content_scripts": [
     {
       "matches": ["http://*/*", "https://*/*"],
-      "js": ["./src/content.js"],
+      "js": ["./content.js"],
       "run_at": "document_idle"
     }
   ],
 
   "icons": {
-    "16": "./public/icons/icon16.png",
-    "48": "./public/icons/icon48.png",
-    "128": "./public/icons/icon128.png"
+    "16": "./icons/icon16.png",
+    "48": "./icons/icon48.png",
+    "128": "./icons/icon128.png"
   },
 
   "content_security_policy": {

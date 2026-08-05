@@ -1,5 +1,19 @@
 {
+  "name": "druid-extension",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+
+  "scripts": {
+    "build": "vite build",
+    "type": "vite build --watch"
+  },
+
   "dependencies": {
     "firebase": "^12.17.0"
+  },
+  
+  "devDependencies": {
+    "vite": "^8.2.0"
   }
 }

@@ -68,7 +68,7 @@ if (!window.__myExtensionLoaded) {
 }
 
 function init() {
-  console.log("[Extension] Content script running on:", window.location.hostname);
+  console.log("[Content] Content script running on:", window.location.hostname);
 
   // ── 1. AI STATUS ────────────────────────────────────
   const sites = ["gemini", "chatgpt", "claude"];
@@ -128,7 +128,7 @@ function init() {
     // regular keyboard strokes
     document.addEventListener("keydown", (event) => {
       if (event.key === "Enter") {
-        console.log("[Extension] Prompt sent:", prompt);
+        console.log("[Content] Prompt sent:", prompt);
         handlePrompt(prompt);
         prompt = "";
       } else if (event.key === "Backspace") {
@@ -137,14 +137,14 @@ function init() {
         prompt += event.key;
       } else if (event.ctrlKey || event.metaKey)  {
         prompt += "ctrl/cmd";
-        console.log("[Extension] Ctrl/cmd detected");
+        console.log("[Content] Ctrl/cmd detected");
       }
     });
 
     document.addEventListener("paste", (event) => {
       const pastedText = event.clipboardData.getData("text");
       if (pastedText) {
-        console.log("[Extension] Pasted:", pastedText);
+        console.log("[Content] Pasted:", pastedText);
         flagPrompt("paste");
         handlePrompt(pastedText);
       }
@@ -155,7 +155,7 @@ function init() {
       if (target.type === "file" && target.files.length > 0) {
         const file = target.files[0];
         if (file.type.startsWith("image/")) {
-          console.log("[Extension] Image uploaded:", file.name);
+          console.log("[Content] Image uploaded:", file.name);
           flagPrompt("upload");
           chrome.runtime.sendMessage({
             type: "IMAGE_UPLOADED",
@@ -184,7 +184,7 @@ function init() {
       setTimeout(() => banner.remove(), 5000); // disappears after 5 seconds   
     } else if (event === "upload") {
       // show a warning on the page if image upload
-      console.log("[Extension] flagPrompt running.");
+      console.log("[Content] flagPrompt running.");
       const banner = document.createElement("div");
       banner.textContent = "⚠️ Image upload detected. ~druid";
       banner.style.cssText = `
@@ -199,7 +199,7 @@ function init() {
   }
 
   function handlePrompt(prompt) {
-    console.log("[Extension] handlePrompt running");
+    console.log("[Content] handlePrompt running");
     chrome.runtime.sendMessage({
       type: "PROMPT_SENT",
       prompt: prompt,
@@ -211,5 +211,5 @@ function init() {
   // ── 3. YOUR PAGE LOGIC GOES HERE ────────────────────
   // Example: log all headings on the page
   // const headings = [...document.querySelectorAll("h1, h2, h3")];
-  // console.log("[Extension] Headings found:", headings.map(h => h.textContent.trim()));
+  // console.log("[Content] Headings found:", headings.map(h => h.textContent.trim()));
 }
