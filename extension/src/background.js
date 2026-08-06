@@ -62,6 +62,7 @@
 
 // ── Firebase Import(s) ────────────────────────────────
 import { auth, db } from "./firebase.js";
+import { GoogleAuthProvider, signInWithCredential } from "firebase/auth";
 
 // ── Install / Update ──────────────────────────────────
 chrome.runtime.onInstalled.addListener((details) => {
@@ -107,8 +108,8 @@ chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
     // write to Firestore
     addFlag({
       event: "IMAGE_UPLOADED",
-      prompt: prompt,
-      aiSite: AIstatus,
+      prompt: message.filename,
+      aiSite: null,
       timestamp: new Date().toISOString()
     });
 
@@ -139,20 +140,31 @@ chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
 async function login() {
   // get OAuth token
   try {
-
-    const token = await chrome.identity.getAuthToken({
+    const result = await chrome.identity.getAuthToken({
       interactive: true
     });
 
-    console.log("[Background] Token:", token);
+    console.log("[Background] Token:", result);
+
+     // exchange for Firebase credential
+    const credential = GoogleAuthProvider.credential(
+      null,
+      result.token
+    );
+
+    // sign in to Firebase
+    const userCredential = await signInWithCredential(
+      auth,
+      credential
+    );
+
+    // console logs to track progress
+    console.log("[Background] Signed in!");
+    console.log("[Background] Current user:", userCredential.user);
 
   } catch (error) {
     console.error("[Background] Login error:", error);
   }
-  // exchange for Firebase credential
-  // sign in
-
-  console.log("[Background] Current user:", auth.currentUser);
 }
 
 // ── Saving Flag Data in Firestore ───────────────────────────────────
