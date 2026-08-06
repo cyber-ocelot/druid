@@ -101,7 +101,7 @@ function init() {
       // set warning text based on type of data
       if (message.data === "text") {
         warningText = "⚠️ Potential academic dishonesty detected. ~druid"
-      } else if (message.data === "text") {
+      } else if (message.data === "image") {
         warningText = "⚠️ Image upload detected. ~druid"
       }
       
@@ -116,6 +116,10 @@ function init() {
       `;
       document.body.appendChild(banner);
       setTimeout(() => banner.remove(), 5000); // disappears after 5 seconds
+
+      sendResponse ({
+        bannerDisplayed: true
+      });
     }
 
     return true;

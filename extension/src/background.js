@@ -63,6 +63,7 @@
 // ── Firebase Import(s) ────────────────────────────────
 import { auth, db } from "./firebase.js";
 import { GoogleAuthProvider, signInWithCredential } from "firebase/auth";
+import { doc, getDoc, setDoc, updateDoc, arrayUnion, increment } from "firebase/firestore";
 
 // ── Install / Update ──────────────────────────────────
 chrome.runtime.onInstalled.addListener((details) => {
@@ -93,7 +94,7 @@ chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
     console.log("[Background] received:", message.prompt);
     console.log("[Background] on AI site:", message.AIstatus);
 
-    await analyzePrompt(message.prompt, message.AIstatus);
+    await analyzePrompt(message.prompt, message.AIstatus, sender.tab.id);
   }
 
   if (message.type === "IMAGE_UPLOADED") {
@@ -108,8 +109,8 @@ chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
     // write to Firestore
     addFlag({
       event: "IMAGE_UPLOADED",
-      prompt: message.filename,
-      aiSite: null,
+      prompt: message.filename ?? null,
+      aiSite: message.AIstatus ?? null,
       timestamp: new Date().toISOString()
     });
 
@@ -158,6 +159,18 @@ async function login() {
       credential
     );
 
+    const user = userCredential.user;
+
+    // create reference to user's document
+    await setDoc(
+      doc(db, "users", user.uid),
+      {
+        email: user.email,
+        createdAt: new Date().toISOString()
+      },
+      { merge: true } // makes sure future logins don't overwrite
+    );
+
     // console logs to track progress
     console.log("[Background] Signed in!");
     console.log("[Background] Current user:", userCredential.user);
@@ -170,18 +183,53 @@ async function login() {
 // ── Saving Flag Data in Firestore ───────────────────────────────────
 async function addFlag(flagData) {
   
+  // if no user logged in
   if (!auth.currentUser) {
     console.log("[Background] No user logged in.");
     return;
   }
 
-  // Firestore write
+  // error catch
+  console.log("[Background] Current user:", auth.currentUser.uid);
 
-  console.log("Saving:",flagData);
+  try {
+    // saving user credentials
+    const uid = auth.currentUser.uid;
+
+    // today's date (YYYY-MM-DD)
+    const today = new Date().toISOString().split("T")[0];
+
+    // users/{uid}/dates/{today}
+    const dayRef = doc(db, 'users', uid, 'dates', today);
+
+    const daySnap = await getDoc(dayRef);
+
+    if (!daySnap.exists()) {
+
+      // first flag of the day
+      await setDoc(dayRef, {
+        //flagCount: 1,
+        flags: [flagData]
+      });
+
+    } else {
+
+      // add another flag
+      await updateDoc(dayRef, {
+        //flagCount: increment(1),
+        flags: arrayUnion(flagData)
+      });
+      
+    }
+  } catch (error) {
+    console.error("[Background] Firestore failed to save flag:", error);
+  }
+
+  console.log("[Background] Firestore saving:",flagData);
 }
 
 // ── Analyze AI Prompt ──────────────────────────────────
-async function analyzePrompt(prompt, AIstatus) {
+async function analyzePrompt(prompt, AIstatus, tabId) {
   console.log("[Background] analyzePrompt called with:", prompt);
   
   const cheatPhrases = [
@@ -208,11 +256,26 @@ async function analyzePrompt(prompt, AIstatus) {
   console.log("[Background] Flagged:", flagged);
 
   if (flagged) {
+
+    // identify tab that was flagged
+    const tabId = sender.tab?.id;
+    
     // send banner to content.js
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-      chrome.tabs.sendMessage(tabs[0].id, { type: "PROMPT_FLAGGED", data: "text" })
-        .catch(() => console.log("[Background] Could not reach content script."));
-    });
+    if (tabId) {
+      chrome.tabs.sendMessage(
+        tabId, 
+        { 
+          type: "PROMPT_FLAGGED", 
+          data: "text" 
+        },
+        () => {
+          if (chrome.runtime.lastError) {
+            console.log("[Background] Error:", chrome.runtime.lastError.message);
+          }
+        }
+      );
+        //.catch(() => console.log("[Background] Could not reach content script."));
+    }
 
     // write to Firestore
     addFlag({
