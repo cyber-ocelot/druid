@@ -59,6 +59,11 @@
 //  popup.js
 // ══════════════════════════════════════════════════════
 
+// ── 0. IMPORTS  ──────────────────────────────────────
+import { doc, getDoc } from "firebase/firestore";
+import { auth, db } from "./firebase";
+import { onAuthStateChanged } from "firebase/auth";
+
 // ── 1. TIPS  ─────────────────────────────────────────
 const TIPS = [
   "You can edit popup.js to add your own tips and features.",
@@ -78,8 +83,23 @@ const footerLink = document.getElementById("footer-link");
 
 // ── 3. INIT ───────────────────────────────────────────
 document.addEventListener("DOMContentLoaded", () => {
-  loadCurrentTab();
+  initializePopup();
 });
+
+// ── 3. INIT FUNCTION ──────────────────────────────────
+function initializePopup() { // keeps updating/adding cleaner/organized
+  loadCurrentTab();
+
+  onAuthStateChanged ((auth), (user) => { // waits to get auth data before loading
+    console.log("[Popup] Auth state:", user);
+
+    if (user) {
+      loadFlagCount();
+    } else {
+      flagsEl.textContent = "⚠️ Flags detected: --"
+    }
+  });
+}
 
 // ── 5. SHOW CURRENT TAB URL ───────────────────────────
 function loadCurrentTab() {
@@ -104,11 +124,13 @@ function loadCurrentTab() {
           }
         });
 
-        chrome.storage.local.get(["flagCount"], (result) => {
+        loadFlagCount(); // from firestore
+
+        /*chrome.storage.local.get(["flagCount"], (result) => {
           const count = result.flagCount || 0;
           flagsEl.textContent = `⚠️ Flags detected: ${count}`;
           flagsEl.hidden = false;
-        });
+        });*/
 
       } catch {
         urlEl.textContent = tabs[0].url;
@@ -144,13 +166,60 @@ btnLogin.addEventListener("click", () => {
   });
 });
 
-// ── 9. FOOTER LINK ────────────────────────────────────
+// ── 9. FIREBASE READ ───────────────────────────────────
+async function loadFlagCount() {
+  console.log("[Popup] Loading flag count...");
+  console.log("[Popup] Current user:", auth.currentUser);
+
+  if (!auth.currentUser) {
+    console.log("[Popup] No user logged in.")
+    flagsEl.textContent = "⚠️ Flags detected: --";
+    return;
+  }
+
+  // today's date (YYYY-MM-DD)
+  const today = new Date().toISOString().split("T")[0];
+  console.log("[Popup] Today's date:", today);
+
+  //  users/{uid}/dates/{today}
+  const dayRef = doc(db, 'users', auth.currentUser.uid, 'dates', today);
+
+  try {
+    const snap = await getDoc(dayRef);
+
+    if (!snap.exists()) { // if today's date document doesn't exist
+      
+      console.log("[Popup] Firebase document doesn't exist.");
+      flagsEl.textContent = "⚠️ Flags detected: 0";
+
+    } else { // if today's document does exist, pull data from it
+      
+      console.log("[Popup] Firebase document exists:", snap.exists());
+      
+      const data = snap.data();
+      const count = data.flags?.length ?? 0;
+
+      console.log("[Popup] Firebase document data:", snap.data());
+
+      flagsEl.textContent = `⚠️ Flags detected: ${count}`;
+    }
+
+    flagsEl.hidden = false;
+
+  } catch (error) {
+    console.error("[Popup] loadFlagCount error:", error);
+    flagsEl.textContent = "⚠️ Flags detected: ?";
+  }
+
+}
+
+// ── 10. FOOTER LINK ────────────────────────────────────
 footerLink.addEventListener("click", (e) => {
   e.preventDefault();
   chrome.tabs.create({ url: "https://example.com" }); // ← change this URL
 });
 
-// ── 10. HELPERS ────────────────────────────────────────
+// ── 11. HELPERS ────────────────────────────────────────
 function showOutput(message) {
   outputText.textContent = message;
   output.hidden = false;
