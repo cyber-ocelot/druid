@@ -13,21 +13,22 @@ Like adding Grammarly, AdBlocker, or Google Translate to Chrome---the default br
 druid/
 ├── extension/
   ├── src/
-      ├── popup.html        ← The UI shown when you click the extension icon
-      ├── popup.css         ← All styles — edit colors/fonts here
       ├── popup.js          ← Popup logic — edit buttons & tips here
+      ├── popup_old.css     ← Backup version of popup.css
       ├── background.js     ← Background service worker (runs always)
       ├── content.js        ← Injected into web pages (DOM access)
-      ├──firebase.js
-  ├── manifest.json         ← Extension config (name, permissions, etc.)
-  ├──package-lock.json
-  ├──package.json
-  ├──README.md
+      └── firebase.js
+  ├── package-lock.json
+  ├── package.json
+  ├── .gitignore
+  ├── vite.config.js
+  ├── README.md
   └── public/  
       ├── popup.html        ← The UI shown when you click the extension icon
       ├── icons/            ← Icons
+      ├── popup.css         ← All styles — edit colors/fonts here
+      └── manifest.json     ← Extension config (name, permissions, etc.)
 ├── website/
-  ├── node-modules/
   ├── public/
   ├── src/
     ├── assets/
@@ -44,9 +45,15 @@ druid/
   ├── package.json
   ├── README.md
   └── vite.config.js
+├── website-backup/
+├── extension-backup/
+├── images/
+├── .gitignore
 ├── add_license.py
 ├── license_preamble.txt
 ├── LICENSE
+├── CODE_OF_CONDUCT.md
+├── CONTRIBUTING.md
 └── README.md
 
 ```

@@ -1,3 +1,22 @@
+# file structure
+├── website/
+  ├── public/
+  ├── src/
+    ├── assets/
+    ├── App.css
+    ├── App.jsx
+    ├── Dashboard.jsx
+    ├── firebase.js
+    ├── index.css
+    ├── Login.jsx
+    ├── main.jsx
+  ├── eslint.config.js
+  ├── index.html
+  ├── package-lock.json
+  ├── package.json
+  ├── README.md
+  └── vite.config.js
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
