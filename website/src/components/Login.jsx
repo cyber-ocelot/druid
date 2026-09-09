@@ -63,8 +63,10 @@ import '../index.css';
 function Login({ text }) {
   const handleLogin = async () => { // handler
     try {
+      // auth user with google account
       const result = await signInWithPopup(auth, provider); // sign in popup
 
+      // user credentials
       const user = result.user;
 
       /*const userRef = doc(db, 'users', user.uid);
@@ -81,11 +83,12 @@ function Login({ text }) {
        });
       }*/
 
+      // firebase auth knows user now; App.jsx will check if profile exists
       console.log("[Login] Signed in:", user);
 
       alert(`Welcome ${user.displayName}!`); // welcome alert
     } catch (error) {
-        console.error(error);
+        console.error("[Login] Sign-in error:",error);
     }
   };
 

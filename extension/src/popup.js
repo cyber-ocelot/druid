@@ -90,12 +90,12 @@ document.addEventListener("DOMContentLoaded", () => {
 function initializePopup() { // keeps updating/adding cleaner/organized
   loadCurrentTab();
 
-  onAuthStateChanged ((auth), (user) => { // waits to get auth data before loading
+  onAuthStateChanged (auth, (user) => { // waits to get auth data before loading
     console.log("[Popup] Auth state:", user);
 
-    if (user) { // user is logged in
+    if (user) { // Firebase auth exists
       console.log("[Popup] Logged in:", user.email);
-
+      
       btnLogin.textContent="Logout"; // change button interface to logout
 
       loadFlagCount();
@@ -153,7 +153,40 @@ function loadCurrentTab() {
 }
 
 // ── 6. LISTEN ─────────────────────────────────────────
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {});
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+
+    if (message.type === "LOGIN_SUCCESS") { // verified Druid student account
+      
+      console.log("[Popup] Student account verified.");
+
+      btnLogin.textContent="Logout";
+
+      loadFlagCount(); // display user's current flag count
+    }
+
+    if (message.type === "PROFILE_MISSING") { // Firebase auth good but no Druid profile
+
+      console.log("[Popup] Druid profile not found.");
+
+      alert(
+        "You don't have a Druid account yet. Please finish setting up your account on the Druid website."
+      );
+
+      chrome.tabs.create({ // launch website
+        url: "http://localhost:5173/" // temporary
+      });
+    }
+
+    if (message.type === "WRONG_ROLE") { // Druid profile good but role not student
+
+      console.log("[Popup] Wrong account role:", message.role);
+
+      alert(
+        "This Druid account isn't a student account. This extension is for student use."
+      );
+    }
+    
+});
 
 // ── 7. PRIMARY ACTION ─────────────────────────────────
 // replace this with whatever your extension actually does!

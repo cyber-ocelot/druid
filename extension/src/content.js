@@ -107,17 +107,7 @@ function init() {
         warningText = "⚠️ Image upload detected. ~druid"
       }
       
-      // show a warning on the page
-      const banner = document.createElement("div");
-      banner.textContent = warningText;
-      banner.style.cssText = `
-        position: fixed; top: 0; left: 0; right: 0;
-        background: #e53e3e; color: white;
-        padding: 12px; text-align: center;
-        font-size: 16px; z-index: 999999;
-      `;
-      document.body.appendChild(banner);
-      setTimeout(() => banner.remove(), 5000); // disappears after 5 seconds
+      displayBanner(warningText);
 
       sendResponse ({
         bannerDisplayed: true
@@ -127,7 +117,24 @@ function init() {
     return true;
   });
 
-  // ── 3. PROMPT DETECTION ──────────────────────────────
+    // ── 3. BANNER DISPLAY ──────────────────────────────
+  function displayBanner(warning) {
+    // shows a warning banner on the page if copy/paste
+    const banner = document.createElement("div"); // creates html element
+
+    banner.textContent = warning; // text/styling
+        banner.style.cssText = `
+          position: fixed; top: 0; left: 0; right: 0;
+          background: #e53e3e; color: white;
+          padding: 12px; text-align: center;
+          font-size: 16px; z-index: 999999;
+        `;
+
+    document.body.appendChild(banner); // adds to site
+    setTimeout(() => banner.remove(), 5000); // disappears after 5 seconds  
+  }
+  
+  // ── 4. PROMPT DETECTION ──────────────────────────────
   if (AIstatus) {
     let prompt = ""
 
@@ -221,9 +228,9 @@ function init() {
         for (const node of mutation.addedNodes) {
 
           // skip if no new elements
-          if (node.nodeType !== Node.ELEMENT_NODE) {
+          /*if (node.nodeType !== Node.ELEMENT_NODE) {
             continue;
-          }
+          }*/
 
           // ignore text nodes/other non-elements
           if (!(node instanceof Element)) {
@@ -243,7 +250,7 @@ function init() {
         'button[aria-label="Open image: User uploaded image"]'
       );*/
       
-          if (imageButton) {
+          if (imageButton && !detectedChatGPTImage) {
 
             detectedChatGPTImage = true;
 
@@ -253,13 +260,22 @@ function init() {
 
             chrome.runtime.sendMessage({
               type: "IMAGE_UPLOADED",
-              filename: file.name,
+              //filename: file.name,
               AIstatus: AIstatus,
               url: window.location.href
             });
           }
         
         }
+
+        const currentImage = document.querySelector(
+        'button[aria-label="Open image: User uploaded image"]'
+        );
+
+        if (!currentImage) {
+          detectedChatGPTImage = false;
+        }
+
       }
 
       // allow new uploads only after current is gone
@@ -279,37 +295,9 @@ function init() {
   // flagging prompts
   function flagPrompt (event) {
     if (event === "paste") {
-
-      // shows a warning banner on the page if copy/paste
-      const banner = document.createElement("div"); // creates html element
-
-      banner.textContent = "⚠️ Copy/pasting detected. ~druid"; // text/styling
-      banner.style.cssText = `
-        position: fixed; top: 0; left: 0; right: 0;
-        background: #e53e3e; color: white;
-        padding: 12px; text-align: center;
-        font-size: 16px; z-index: 999999;
-      `;
-
-      document.body.appendChild(banner); // adds to site
-      setTimeout(() => banner.remove(), 5000); // disappears after 5 seconds   
-
+      displayBanner("⚠️ Copy/pasting detected. ~druid"); 
     } else if (event === "upload") {
-
-      // shows a warning banner on the page if image upload
-      console.log("[Content] flagPrompt running.");
-      const banner = document.createElement("div"); // creates html element
-
-      banner.textContent = "⚠️ Image upload detected. ~druid"; // text/styling
-      banner.style.cssText = `
-        position: fixed; top: 0; left: 0; right: 0;
-        background: #e53e3e; color: white;
-        padding: 12px; text-align: center;
-        font-size: 16px; z-index: 999999;
-      `;
-
-      document.body.appendChild(banner); // adds to site
-      setTimeout(() => banner.remove(), 5000); // disappears after 5 seconds   
+      displayBanner("⚠️ Image upload detected. ~druid");  
     }
   }
 

@@ -141,37 +141,76 @@ chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
 
 // ── Login Function ──────────────────────────────────────────────
 async function login() {
-  // get OAuth token
   try {
+
+    console.log('[Background] Starting Google OAuth...');
+    // get OAuth token
     const result = await chrome.identity.getAuthToken({
       interactive: true
     });
 
+    console.log('[Background] Google OAuth finished.');
     console.log("[Background] Token:", result);
 
+    console.log('[Background] Creating Firebase credential...');
      // exchange for Firebase credential
     const credential = GoogleAuthProvider.credential(
       null,
       result.token
     );
 
+    console.log('[Background] Signing into Firebase...');
     // sign in to Firebase
     const userCredential = await signInWithCredential(
       auth,
       credential
     );
 
+    console.log('[Background] Firebase sign-in finished.');
+
     const user = userCredential.user;
 
-    // create reference to user's document
-    await setDoc(
-      doc(db, "users", user.uid),
-      {
-        email: user.email,
-        createdAt: new Date().toISOString()
-      },
-      { merge: true } // makes sure future logins don't overwrite
-    );
+    console.log("[Background] Firebase Auth successful:", user.email);
+
+    const userRef = doc(db, "users", user.uid); // look for user's Druid profile in Firestore
+    const userSnap = getDoc(userRef); // reads profile
+
+    // no Druild profile
+    if (!(await userSnap).exists()) {
+
+      console.log("[Background] No Druid profile found.");
+
+      // tell popup.js that user needs to finish profile setup
+      chrome.runtime.sendMessage({
+        type: "PROFILE_MISSING"
+      });
+
+      return;
+    }
+
+    const profile = (await userSnap).data();
+
+    console.log("[Background] Druid profile:", profile);
+
+    // chrome extension = student-only
+    if (profile.role !== "student") {
+      
+      console.log("[Background] Account is not student account.");
+
+      chrome.runtime.sendMessage({
+        type: "WRONG_ROLE",
+        role: profile.role
+      });
+
+      return;
+    }
+
+    // profile exists + role = student
+    console.log("[Background] Student account verified.");
+
+    chrome.runtime.sendMessage({
+      type: "LOGIN_SUCCESS"
+    });
 
     // console logs to track progress
     console.log("[Background] Signed in!");

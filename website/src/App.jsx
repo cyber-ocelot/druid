@@ -55,6 +55,7 @@
  * this license.
  */
 
+// IMPORTS
 import './App.css'; // stylesheets
 import './index.css';
 
@@ -73,13 +74,17 @@ import GuardianDashboard from './components/GuardianDashboard';
 
 
 function App() {
-  const [ user, setUser ] = useState(null); // auth user info
-  const [ loading, setLoading ] = useState(true);
+  // INITIALIZATION -- load user profile, etc
+
+  const [ user, setUser ] = useState(null); // auth user info; who?
+  const [ loading, setLoading ] = useState(true); // prevents load before render
 
   const [profile, setProfile] = useState(null); // user document/profile info
-  const [profileLoading, setProfileLoading] = useState(true);
+  const [profileLoading, setProfileLoading] = useState(true); // tracks if profile lookup done
 
   useEffect(() => {
+  
+    // listen for firebase/auth state changes
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       setUser(currentUser);
 
@@ -92,12 +97,12 @@ function App() {
 
       try {
         const userRef = doc(db, "users", currentUser.uid); // gets firebase write
-        const userSnap = await getDoc(userRef);
+        const userSnap = await getDoc(userRef); // read/retrieve firebase write
 
         if (userSnap.exists()) { // checks if user data exists
-          setProfile(userSnap.data());
+          setProfile(userSnap.data()); // existing account = saved to display right dashboard
         } else {
-          setProfile(null);
+          setProfile(null); // yes firebase account but no druid account
         }
       } catch (error) {
         console.error("[App] Failed to load profile:", error);
@@ -117,6 +122,8 @@ function App() {
         </section>
     )
   }
+
+  // ACCOUNT ROUTING -- what user sees after auth
 
   /*if (user) { // defaults to student dashboard for now
     return <StudentDashboard user={user}/>
@@ -159,6 +166,8 @@ function App() {
     return <GuardianDashboard user={user} />;
   }
 
+
+  // USER INTERFACE -- HTML that gets displayed
   return ( // actual UI
     <>
       {/* Orbs */}

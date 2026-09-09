@@ -53,7 +53,7 @@ function ProfileSetup ({ user, onComplete }) { // React component; recieves "pro
                     <div> {/* role buttons */}
                         <button
                             type="button"
-                            className={role=="student" ? "btn-primary" : "btn-ghost"}
+                            className={role==="student" ? "btn-primary" : "btn-ghost"}
                             onClick={() => setRole("student")}
                         >
                             Student
@@ -61,7 +61,7 @@ function ProfileSetup ({ user, onComplete }) { // React component; recieves "pro
 
                         <button
                             type="button"
-                            className={role=="teacher" ? "btn-primary" : "btn-ghost"}
+                            className={role==="teacher" ? "btn-primary" : "btn-ghost"}
                             onClick={() => setRole("teacher")}
                         >
                             Teacher
@@ -69,7 +69,7 @@ function ProfileSetup ({ user, onComplete }) { // React component; recieves "pro
 
                         <button
                             type="button"
-                            className={role=="guardian" ? "btn-primary" : "btn-ghost"}
+                            className={role==="guardian" ? "btn-primary" : "btn-ghost"}
                             onClick={() => setRole("guardian")}
                         >
                             Guardian
