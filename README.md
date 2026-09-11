@@ -1,4 +1,4 @@
-# druid
+# druid [![DOI](https://zenodo.org/badge/1249247675.svg)](https://doi.org/10.5281/zenodo.22715792)
 As of 7/17/2026, a humble caterpillar hoping to metamorph into a magnificent butterfly.
 
 ## overall workflow
