@@ -2,32 +2,65 @@ import { useEffect, useState } from "react";
 //import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "../firebase";
 import { doc, getDoc } from "firebase/firestore";
+import { signOut } from "firebase/auth";
 
 function StudentDashboard({ user }) {
     //const [user, setUser] = useState(null);
-    const [flags, setFlags] = useState([]);
+    const [flags, setFlags] = useState([]); // enables use/edit of flag var & waits for it to be set
+    const [profile, setProfile] = useState(null); // enables changes of profile var & ^^
 
+    // logout function
+    const handleLogout = async() => {
+        try {
+            await signOut(auth);
+            console.log("[Student Dashboard] Logged out.");
+        } catch (error) {
+            console.error("[Student Dashboard] Logout failed:", error);
+        }
+    };
+    
     useEffect(() => {
-        const today = new Date().toISOString().split("T")[0];
-
-        // ref to todays doc
-        const dayRef = doc(
-            db,
-            "users",
-            user.uid,
-            "dates",
-            today
-        );
         
         // read todays doc from firestore
         const loadFlags = async () => {
-            const snap = await getDoc(dayRef);
+            try {
 
-            // handle data
-            if (snap.exists()) {
-                const data = snap.data();
+                // get student's profile
+                const userRef = doc(
+                    db,
+                    "users",
+                    user.uid
+                );
 
-                setFlags(data.flags ?? []);
+                const profileSnap = await getDoc(userRef);
+
+                if (profileSnap.exists()) {
+                    setProfile(profileSnap.data())
+                }
+
+                // get today's flags
+                const today = new Date().toISOString().split("T")[0];
+
+                // ref to todays doc
+                const dayRef = doc(
+                    db,
+                    "users",
+                    user.uid,
+                    "dates",
+                    today
+                );
+
+                const flagsSnap = await getDoc(dayRef);
+
+                // handle data
+                if (flagsSnap.exists()) {
+                    const data = flagsSnap.data();
+
+                    setFlags(data.flags ?? []);
+                }
+                
+            } catch (error) { // error handling
+                console.error("[Student Dashboard] Failed to load flags:", error);
             }
         };
 
@@ -42,6 +75,13 @@ function StudentDashboard({ user }) {
                 <p className="hero-sub">
                     Signed in as {user.displayName}
                 </p>
+
+                <button
+                    className="btn-ghost"
+                    onClick={handleLogout}
+                >
+                    Logout
+                </button>
 
                 <h2>Today's Flags</h2>
 
