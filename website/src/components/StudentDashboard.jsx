@@ -4,21 +4,13 @@ import { auth, db } from "../firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { signOut } from "firebase/auth";
 
+import Logout from "./Logout";
+
 function StudentDashboard({ user }) {
     //const [user, setUser] = useState(null);
     const [flags, setFlags] = useState([]); // enables use/edit of flag var & waits for it to be set
     const [profile, setProfile] = useState(null); // enables changes of profile var & ^^
 
-    // logout function
-    const handleLogout = async() => {
-        try {
-            await signOut(auth);
-            console.log("[Student Dashboard] Logged out.");
-        } catch (error) {
-            console.error("[Student Dashboard] Logout failed:", error);
-        }
-    };
-    
     useEffect(() => {
         
         // read todays doc from firestore
@@ -80,12 +72,7 @@ function StudentDashboard({ user }) {
                 </p>
 
                 {/* Logout Button UI */}
-                <button
-                    className="btn-ghost"
-                    onClick={handleLogout}
-                >
-                    Logout
-                </button>
+                <Logout />
 
                 {/* Profile Info */}
                 {profile && (
