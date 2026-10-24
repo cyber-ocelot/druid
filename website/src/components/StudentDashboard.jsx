@@ -58,7 +58,7 @@ function StudentDashboard({ user }) {
 
                     setFlags(data.flags ?? []);
                 }
-                
+
             } catch (error) { // error handling
                 console.error("[Student Dashboard] Failed to load flags:", error);
             }
@@ -70,12 +70,16 @@ function StudentDashboard({ user }) {
     return (
         <div className="page">
             <section className="hero">
-                <h1>Student Dashboard</h1>
+                {/* Header */}
+                <h1>
+                    Welcome, {profile.name || user.displayName || "Student"}
+                </h1> {/* '||' & '?' means fallbacks/only if acc response valid/available */}
 
                 <p className="hero-sub">
-                    Signed in as {user.displayName}
+                    {profile?.email || user.email}
                 </p>
 
+                {/* Logout Button UI */}
                 <button
                     className="btn-ghost"
                     onClick={handleLogout}
@@ -83,26 +87,63 @@ function StudentDashboard({ user }) {
                     Logout
                 </button>
 
+                {/* Profile Info */}
+                {profile && (
+                    <div className="profile-card">
+                        {/* only render once Firestore profile loaded */}
+                        <h2>Your Profile</h2>
+
+                        <p>
+                            <strong>Name:</strong> {profile.name}
+                        </p>
+
+                        <p>
+                            <strong>Email:</strong> {profile.email}
+                        </p>
+
+                        <p>
+                            <strong>Role:</strong> {profile.role}
+                        </p>
+                    </div>
+                )}
+
+                {/* Flag Display UI */}
                 <h2>Today's Flags</h2>
 
                 <div className="flag-list">
-                    {flags.map((flag, index) => (
-                        <div className="flag-card" key={index}>
-                            <h3>{flag.event}</h3>
-
-                            <p>
-                                <strong>Site:</strong> {flag.aiSite}
-                            </p>
-
-                            <p>
-                                <strong>Prompt:</strong> {flag.prompt}
-                            </p>
-
-                            <p>
-                                <strong>Time:</strong> {flag.timestamp}
-                            </p>
+                    {flags.length === 0 ? (
+                        // clearly display when no flags recorded instead of blank
+                        <div className="empty-state">
+                            <h3>No flags today</h3>
                         </div>
-                    ))}
+                    ) : (
+                        flags.map((flag, index) => (
+                            <div className="flag-card" key={index}>
+                                <h3>{flag.event}</h3>
+
+                                <p>
+                                    <strong>Site:</strong> {flag.aiSite}
+                                </p>
+
+                                {flag.prompt && (
+                                    <p>
+                                        <strong>Prompt:</strong> {flag.prompt}
+                                    </p>
+                                )}
+
+                                <p>
+                                    <strong>Time:</strong> {flag.timestamp}
+                                </p>
+
+                                {/*<p>
+                                    <strong>Groups:</strong>{" "}
+                                    {profile.groups?.length
+                                        ? profile.groups.join(", ")
+                                        : "None"}
+                                </p>*/}
+                            </div>
+                        ))
+                    )}
                 </div>
             </section>
         </div>
